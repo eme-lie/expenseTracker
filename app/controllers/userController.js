@@ -15,17 +15,16 @@ exports.signup = async (req, res, next) => {
     
     // Create user
     const UserID = uuidv4();
-    const user = await User.createUser(UserID, req.body.Email, hashedPassword, req.body.Username, req.body.FirstName)
+    await User.createUser(UserID, req.body.Email, hashedPassword, req.body.Username, req.body.FirstName)
     
     // Create token
-    const token = jwt.sign({user}, secretKey, {expiresIn: '2h'})
+    // const token = jwt.sign({UserID}, secretKey, {expiresIn: '2h'})
 
-    // Send back response with cookie
-    res.status(200).json({ message: 'User Created'})
+    // redirect to home page if successful  
     res.redirect('/home')
 
   }catch(error){
-    console.error(error);
+    console.error('Error creating user', error);
     res.status(500).json({ error: 'Server Error'})
   }
 }
@@ -56,7 +55,7 @@ exports.login = async (req, res, next) => {
     // Check password
     const isPasswordValid = await bcrypt.compare(req.body.Password, user.hashedPassword);
     if(!isPasswordValid){
-      return res.status(401).json({ error: 'Invalid Credebtials'})
+      return res.status(401).json({ error: 'Invalid Credentials'})
     } 
 
     // Generate access token
@@ -68,7 +67,7 @@ exports.login = async (req, res, next) => {
     // res.status(200).json({ accessToken})
     
   } catch(error){
-      console.error(error)
+      console.error('Login error', error)
       res.status(500).json({ error: 'Server Error'})
   }
 

@@ -1,27 +1,32 @@
-const express = require("express");
-const path = require("path");
-const createError = require("http-errors");
+const express = require('express');
+const path = require('path');
+const createError = require('http-errors');
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
-const userController = require("./controllers/userController");
-const categoryController = require("./controllers/categoryController");
-const transactionController = require("./controllers/transactionController");
-const signupandloginController = require("./controllers/signupandloginController");
-
+const categoryController = require('./controllers/categoryController');
+const transactionController = require('./controllers/transactionController');
+const userRoutes = require('./routes/userRoutes')
 const transactionModel = require("./models/transactionModel")
 
 const app = express();
 
-app.use(express.static("static"));
-app.set("view engine", "pug");
-app.set("views", "./app/views");
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.static('static'));
+app.set('view engine', 'pug');
+app.set('views', './app/views');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: 'GET, POST, PUT, PATCH, DELETE',
+  allowedHeaders: 'Content-Type, Accepts, Authorization'
+}))
 
-app.use("/users", userController);
-app.use("/categories", categoryController);
-app.use("/transactions", transactionController);
-app.use("/auth", signupandloginController);
+app.use('/', userRoutes)
+app.use('/categories', categoryController);
+app.use('/transactions', transactionController);
 
 app.get("/landing_page", (req, res) => {
   res.render("landing_page");

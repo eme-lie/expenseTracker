@@ -9,7 +9,7 @@ html
     body
     .container
         img(src="/images/side_image.png" alt="expenseTracker-back-button" class="side-image")
-        .right-container
+        .right-container 
             if current_view === "signup"
                 .sign-up-container
                     .sign-up-container-back-button-and-title 
@@ -33,7 +33,7 @@ html
                                 a(href="/home" class="sign-up-login-button") Create Account
                                 .texts 
                                     p.main-text Already have an account?
-                                    a(href="/auth/login")
+                                    a(href="/login")
                                         p.sub-text Log In
 
             else if current_view === "login"
@@ -53,7 +53,7 @@ html
                                 a(href="/home" class="sign-up-login-button") Log In
                                 .texts 
                                     p.main-text Don't have an account?
-                                    a(href="/auth/signup")
+                                    a(href="/signup")
                                         p.sub-text Sign Up
                                         
                                          

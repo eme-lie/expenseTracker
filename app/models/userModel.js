@@ -11,14 +11,13 @@ class User {
 
   static async createUser(userId, email, password, username, firstName) {
     try{
-    const result = await db.query('INSERT INTO User (Email, Password, Username, FirstName) VALUES (?, ?, ?, ?)', [email, password, username, firstName])
+    const result = await db.query('INSERT INTO User (Email, Password, Username, FirstName) VALUES (?, ?, ?, ?, ?)', [userId, email, password, username, firstName])
     // Check if the result is an array with atleast one element
     if(Array.isArray(result) && result.length > 0){
       const insertId = result[0].insertId
 
       // Check if insertId is valid
       if(insertId !== undefined){
-        return insertId
       }
     }  
     // If the result doesn't match the expected format, throw an error

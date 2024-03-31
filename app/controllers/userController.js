@@ -2,9 +2,8 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { secretKey } = require('../services/db');
-const { validationResult, cookie } = require('express-validator');
+const { validationResult } = require('express-validator');
 const { v4: uuidv4 } = require('uuid')
-const cookieParser = require('cookie-parser')
 
 exports.signup = async (req, res, next) => {
   try{
@@ -22,8 +21,8 @@ exports.signup = async (req, res, next) => {
     const token = jwt.sign({user}, secretKey, {expiresIn: '2h'})
 
     // Send back response with cookie
-    res.status(200).cookie('token', token, {httpOnly: true}).json({ message: 'User Created'})
-    //res.redirect('/home')
+    res.status(200).json({ message: 'User Created'})
+    res.redirect('/home')
 
   }catch(error){
     console.error(error);
@@ -46,7 +45,7 @@ exports.login = async (req, res, next) => {
 
     // Check if the user is null or undefined
     if(!user || user === undefined){
-      return res.status(401).json({ errors: 'Invalid credentials'});
+      return res.status(401).json({ errors: 'Invalid Credentials'});
     }
 
     // Check if the password is provided
@@ -57,16 +56,16 @@ exports.login = async (req, res, next) => {
     // Check password
     const isPasswordValid = await bcrypt.compare(req.body.Password, user.hashedPassword);
     if(!isPasswordValid){
-      return res.status(401).json({ error: 'Invalid Password'})
+      return res.status(401).json({ error: 'Invalid Credebtials'})
     } 
 
     // Generate access token
     const accessToken = jwt.sign({ userId: user.UserID}, secretKey, { expiresIn: '2h'})
-    //console.log(res.cookie("accessToken", accessToken))
+    
 
     // Respond with token
-    //res.status(200).json({ accessToken})
     res.redirect('/home')
+    // res.status(200).json({ accessToken})
     
   } catch(error){
       console.error(error)

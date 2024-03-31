@@ -48,14 +48,25 @@ router.get('/:id/update', async(req, res, next) => {
     title: `Update Transaction: ${transaction.Description}`,
     categories,
     transaction,
-
   })
 })
 
 router.post('/:id/update', async(req, res, next) => {
-  transaction = await transactionModel.getSingleTransaction(req.params.id)
-  console.log(req.body)
-  res.redirect('/transactions')
+  let newTransaction = {
+    ...req.body
+  }
+
+  newTransaction['Date'] = new Date(newTransaction['Date']).toISOString().slice(0, 10)
+
+  if((newTransaction['Type'] == 'expense') && (Number(newTransaction['Amount']) > 0))
+    newTransaction['Amount'] = "-" + newTransaction['Amount']
+
+  if((newTransaction['Type'] == 'income') && (Number(newTransaction['Amount']) < 0))
+    newTransaction['Amount'] = Number(newTransaction['Amount']) * -1
+
+  transactionModel.updateTransaction(req.params.id, newTransaction)
+
+  res.redirect('/transactions');
 })
 
 // DELETING FROM A MODAL

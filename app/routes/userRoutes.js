@@ -9,12 +9,7 @@ const User = require('../models/userModel');
 // Render the signup form
 router.get('/signup', (req, res) => {
     res.render('signup');
-  });
-  
-  // Render the login form
-  router.get('/login', (req, res) => {
-    res.render('login');
-  });
+});
 
 // Handle signup form submission  
 router.post('/signup', [
@@ -28,12 +23,16 @@ router.post('/signup', [
    body('Username')
       .notEmpty().withMessage("Username field can't be empty")
       .isLength({ min: 4 }).withMessage('Username must be at least 4 characters long')
-], 
-signup
+  ], 
+  signup
 );
 
-// Handle login form submission
+// Render the login form
+router.get('/login', (req, res) => {
+  res.render('login');
+});
 
+// Handle login form submission
 router.post('/login', [
   body('Email').isEmail().withMessage('Please enter a valid email'),
   body('Password').notEmpty().withMessage("Password field can't be empty")

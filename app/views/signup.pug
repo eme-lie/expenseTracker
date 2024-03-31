@@ -3,12 +3,20 @@ extends layout
 block content
   h1 Sign Up
   form(action="/signup", method="post")
-    label(for="Email") Email:
-    input(type="email", name="Email", id="Email", required)
-    label(for="password") Password:
-    input(type="password", name="Password", id="password", required)
-    label(for="username") Username:
-    input(type="text", name="Username", id="username", required)
-    label(for="firstname") FirstName:
-    input(type="text", name="FirstName", id="FirstName", required)
+    div
+      label(for="Email") Email:
+      input(type="email", name="Email", id="Email", required)
+    
+    div
+      label(for="password") Password:
+      input(type="password", name="Password", id="password", required)
+    
+    div
+      label(for="username") Username:
+      input(type="text", name="Username", id="username", required)
+    
+    div
+      label(for="firstname") FirstName:
+      input(type="text", name="FirstName", id="FirstName", required)
+      
     button(type="submit") Sign Up

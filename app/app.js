@@ -1,13 +1,13 @@
 const express = require('express');
 const path = require('path');
 const createError = require('http-errors');
-const categoryController = require('./controllers/categoryController');
-const transactionController = require('./controllers/transactionController');
-const userRoutes = require('./routes/userRoutes')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+const categoryController = require('./controllers/categoryController');
+const transactionController = require('./controllers/transactionController');
+const userRoutes = require('./routes/userRoutes')
 const transactionModel = require("./models/transactionModel")
 
 const app = express();
@@ -24,7 +24,7 @@ app.use(cors({
   allowedHeaders: 'Content-Type, Accepts, Authorization'
 }))
 
-app.use(userRoutes)
+app.use('/', userRoutes)
 app.use('/categories', categoryController);
 app.use('/transactions', transactionController);
 

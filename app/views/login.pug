@@ -3,8 +3,12 @@ extends layout
 block content
   h1 Log In
   form(action="/login", method="post")
-    label(for="email") Email:
-    input(type="email", name="Email", id="Email", required)
-    label(for="password") Password:
-    input(type="password", name="Password", id="password", required)
+    div
+      label(for="email") Email:
+      input(type="email", name="Email", id="Email", required)
+    
+    div
+      label(for="password") Password:
+      input(type="password", name="Password", id="password", required)
+
     button(type="submit") Log In

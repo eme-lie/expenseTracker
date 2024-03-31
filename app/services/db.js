@@ -32,5 +32,6 @@ async function query(sql, params = []) {
 
 module.exports = {
   query,
-  secretKey: config.secretKey
+  secretKey: config.secretKey,
+  pool,
 }

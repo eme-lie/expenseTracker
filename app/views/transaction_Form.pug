@@ -28,7 +28,7 @@ block content
 
     // Date input
     div.form-floating.mb-3
-      input.form-control#ExpenseDate(type="date", placeholder="Expense Date", aria-label="Expense Date", name="Date", value=transaction?transaction.Date.toISOString().substring(0, 10):"")
+      input.form-control#ExpenseDate(type="date", placeholder="Expense Date", aria-label="Expense Date", name="Date", value=transaction?transaction.Date.toISOString().substring(0, 10):"", required)
       label(for="ExpenseDate") Transaction Date
     
     // Expense Category select

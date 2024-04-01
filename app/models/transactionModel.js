@@ -13,8 +13,11 @@ const getTransactions = async () => {
 const calculateTotalBalance = (transactions) => {
   let totalBalance = 0;
   for (const transaction of transactions) {
-    totalBalance += parseFloat(transaction.Amount)    
+    totalBalance += parseFloat(transaction.Amount)
   }
+  
+  // rounding to nearest 2 decimal points
+  totalBalance = parseFloat(totalBalance).toFixed(2)
   return totalBalance;
 
 };
@@ -51,7 +54,7 @@ async function updateTransaction(id, newTransaction){
   sql += keys.join(', ')
 
   values.push(id)
-  sql += `WHERE TransactionID = ?;`
+  sql += ` WHERE TransactionID = ?;`
 
   //console.log(sql)
   await db.pool.query(sql, values)

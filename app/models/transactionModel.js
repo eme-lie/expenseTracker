@@ -28,11 +28,17 @@ const getTransactions = async () => {
 };
 
 const calculateTotalBalance = (transactions) => {
-  let totalBalance = 0;
+  try{
+    let totalBalance = 0;
   for (const transaction of transactions) {
-    totalBalance += parseFloat(transaction.Amount)    
+    totalBalance += parseFloat(transaction.Amount || 0)    
   }
   return totalBalance;
+
+  }catch (error) {
+    console.error('Error calculating total balance:', error);
+    throw error
+  }
 
 };
 

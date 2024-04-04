@@ -42,11 +42,15 @@ const calculateTotalBalance = (transactions) => {
 
 };
 
-async function getSingleTransaction(id) {
-  let sql = `SELECT * FROM Transaction WHERE TransactionID=?`
-  let transaction = await db.pool.query(sql, [id])
-  transaction = transaction[0][0]
-  return transaction
+const getSingleTransaction = async (id) => {
+  try {
+    let sql = `SELECT * FROM Transaction WHERE TransactionID=?` 
+    const [rows] = await db.pool.query(sql, [id])
+    return rows[0] // Return the first transaction found
+  } catch (error) {
+    console.error('Error fetching single transaction:', error)
+    throw error
+  }
 }
 
 module.exports = {

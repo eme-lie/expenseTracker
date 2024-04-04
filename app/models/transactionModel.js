@@ -1,10 +1,17 @@
 const db = require('../services/db');
 
-const createTransactions = async (transactionId, type, amount, date, categoryId, description, userId) => {
+const createTransaction = async (transactionId, type, amount, date, categoryId, description, userId) => {
   try{
+    // Validate   input parameters
+    if (!type || !amount || !date || !userId){
+      throw new Error('Missing required parameters');
+    }
+    // Insert transaction into the database
      const result = await db.query('INSERT INTO Transaction (Type, Amount, Date, CategoryID, Description, UserID) VALUES (?, ?, ?, ?, ?, ?)', [ type, amount, date, categoryId, description, userId])
+     // Return the ID of the newly created transaction
+     return result.insertId;
   }catch (error) {
-    console.error('Error creating transactions:', error);
+    console.error('Error creating transaction:', error);
     throw error
   }
  }
@@ -37,7 +44,7 @@ async function getSingleTransaction(id) {
 }
 
 module.exports = {
-  createTransactions,
+  createTransaction,
   getTransactions,
   calculateTotalBalance,
   getSingleTransaction,

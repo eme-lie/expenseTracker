@@ -1,6 +1,6 @@
 const db = require('../services/db');
 
-const createTransactiona = async (type, amount, date, categoryId, description, userId) => {
+const createTransactions = async (transactionId, type, amount, date, categoryId, description, userId) => {
   try{
      const result = await db.query('INSERT INTO Transaction (Type, Amount, Date, CategoryID, Description, UserID) VALUES (?, ?, ?, ?, ?, ?)', [ type, amount, date, categoryId, description, userId])
   }catch (error) {
@@ -37,6 +37,7 @@ async function getSingleTransaction(id) {
 }
 
 module.exports = {
+  createTransactions,
   getTransactions,
   calculateTotalBalance,
   getSingleTransaction,

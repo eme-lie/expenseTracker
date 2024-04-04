@@ -1,5 +1,15 @@
 const db = require('../services/db');
 
+const createTransactiona = async (type, amount, date, categoryId, description, userId) => {
+  try{
+     const result = await db.query('INSERT INTO Transaction (Type, Amount, Date, CategoryID, Description, UserID) VALUES (?, ?, ?, ?, ?, ?)', [ type, amount, date, categoryId, description, userId])
+  }catch (error) {
+    console.error('Error creating transactions:', error);
+    throw error
+  }
+ }
+ 
+
 const getTransactions = async () => {
   try {
     const [rows] = await db.query('SELECT * FROM Transaction');

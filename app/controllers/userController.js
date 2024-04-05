@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const createTransaction = require('../models/transactionModel').createTransaction
+// const createTransaction = require('../models/transactionModel').createTransaction
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { secretKey } = require('../services/db');
@@ -19,13 +19,13 @@ exports.signup = async (req, res, next) => {
     await User.createUser(UserID, req.body.Email, hashedPassword, req.body.Username, req.body.FirstName)
 
     // Create Transaction
-    await createTransaction(null, 'income', 0.0, new Date(), null, 'Initial balance', UserID)
+    // await createTransaction('income', 0.0, new Date(), null, 'Initial balance', UserID)
     
     // Create token
     // const token = jwt.sign({UserID}, secretKey, {expiresIn: '2h'})
 
-    // redirect to home page if successful  
-    res.redirect('/home')
+    // redirect to transaction creation route with UserID as query parameter if successful  
+    res.redirect(`/transactions/create?UserID=${UserID}`)
 
   }catch(error){
     console.error('Error creating user', error);

@@ -2,7 +2,7 @@ const db = require('../services/db');
 
 const createTransaction = async (transactionId, type, amount, date, categoryId, description, userId) => {
   try{
-    // Validate   input parameters
+    // Validate input parameters
     if (!type || !amount || !date || !userId){
       throw new Error('Missing required parameters');
     }

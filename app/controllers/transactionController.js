@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const transactionModel = require('../models/transactionModel');
+const createTransaction = require('../models/transactionModel').createTransaction;
 const categoryModel = require('../models/categoryModel')
 
 
@@ -36,8 +36,12 @@ router.get('/create', async (req, res, next) => {
 router.post('/create', async(req, res, next) => {
   
   try{
-    const { type, amount, date, categoryId, description, userId } = req.body;
-    const transactionId = await transactionModel.createTransaction(type, amount, date, categoryId, description, userId);
+    console.log('req.body', req.body);
+    const { Type, Amount, Date, CategoryID, Description } = req.body;
+    // Extract UserID from query parameters
+    const { UserID } = req.query;
+    const transactionId = await createTransaction(null, Type, Amount, Date, CategoryID, Description, UserID);
+    res.status(201).json({ newTransactionId: transactionId})
     res.redirect('/transactions')
   }catch(err){
     next(err)

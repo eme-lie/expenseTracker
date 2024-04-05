@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const createTransaction = require('../models/transactionModel').createTransaction
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { secretKey } = require('../services/db');
@@ -16,6 +17,9 @@ exports.signup = async (req, res, next) => {
     // Create user
     const UserID = uuidv4();
     await User.createUser(UserID, req.body.Email, hashedPassword, req.body.Username, req.body.FirstName)
+
+    // Create Transaction
+    await createTransaction(null, 'income', 0.0, new Date(), null, 'Initial balance', UserID)
     
     // Create token
     // const token = jwt.sign({UserID}, secretKey, {expiresIn: '2h'})

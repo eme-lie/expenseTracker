@@ -64,7 +64,7 @@ router.post('/:id/update', async(req, res, next) => {
   if((newTransaction['Type'] == 'income') && (Number(newTransaction['Amount']) < 0))
     newTransaction['Amount'] = Number(newTransaction['Amount']) * -1
 
-  transactionModel.updateTransaction(req.params.id, newTransaction)
+  await transactionModel.updateTransaction(req.params.id, newTransaction)
 
   res.redirect('/transactions');
 })

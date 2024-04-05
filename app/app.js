@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/home', async (req, res, next)=> {
-  const transactions = await transactionModel.getTransactions();
+  const transactions = await transactionModel.getTransactions(req.cookies.user);
   const totalBalance = transactionModel.calculateTotalBalance(transactions);
 
   res.render('HomePage', {

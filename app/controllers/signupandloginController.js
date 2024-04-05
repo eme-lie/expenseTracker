@@ -27,4 +27,15 @@ router.post("/login", async (req, res) => {
 
 })
 
+router.get("/logout", async (req, res) => {
+  res.render('log_out')
+})
+
+router.post("/logout", async (req, res) => {
+  res.cookie('user', 'admin')
+  res.redirect('/')
+})
+
+
+
 module.exports = router;

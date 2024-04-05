@@ -1,12 +1,31 @@
 extends layout
+block style
+  link(rel="stylesheet", href="./stylesheets/catergoriesList.css")
 
 block content
   h1= title
 
   if categories
+    div(class='purple')
+      img(src="/images/add-circle.png", alt="add-circle", srcset="" class='add-circle')
+      a(href='/categories/create' class='title-text') Add a Category
+        
+
     ul
       each category in categories
-        li
+        //-li
           | CategoryID: #{category.CategoryID}, CategoryName: #{category.CategoryName}
+        li 
+          .name #{category.CategoryName}
+
+          .link
+            
+            div(class='dropdown')
+              button(class='menu-btn') ...
+              
+              div(class='dropdown-content')
+                a(href=`/categories/${category.CategoryID}/delete`) Delete
+                a(href=`/categories/${category.CategoryID}/update`) Update
+
   else
     p There are no categories

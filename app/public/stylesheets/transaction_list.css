@@ -1,0 +1,272 @@
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.nav > a > .transactions {
+	border-bottom: 4px solid #572AA9;
+}
+
+.nav > a > .transactions > p {
+	color: #462287;
+	font-weight: bold;
+}
+
+/****************************/
+
+h1 {
+	text-align: center;
+	font-size: 1.5rem;
+	color: var(--Primary-color);
+	margin: 4vh 0;
+}
+
+/****************************/
+
+.purple {
+	display: flex;
+	justify-content: center;
+}
+
+.purple > div {
+	width: 25vw;
+	padding: 1.5vh 0;
+	
+	background-color: var(--Neutral300-border-color);
+
+	text-align: center;
+	font-size: var(--T2-medium-title-font-size);
+}
+
+/*************************/
+
+#sorting {
+	border-right: 1px solid #572AA9;
+	display: flex;
+	flex-direction: column;
+
+	position: relative;
+}
+
+#sorting:hover > #sortingDD {
+	display: block;
+}
+
+#sortingDD {
+	display: none;
+	position: absolute;
+	top: 4.5vh;
+	left: 5vw;
+	background-color: white;
+
+	-webkit-box-shadow: 3px 29px 63px 4px rgba(0,0,0,0.1);
+	-moz-box-shadow: 	3px 29px 63px 4px rgba(0,0,0,0.1);
+	box-shadow: 		3px 29px 63px 4px rgba(0,0,0,0.1);
+	border-radius: 4px;
+}
+
+#sortingDD > div {
+	padding-top: 0;
+	width: 15vw;	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.quantity {
+	border-bottom: 1px solid lightgray;
+}
+
+h4 {
+	font-size: 1.15rem;
+	color: var(--Primary-color);
+	padding: 2vh 0;
+}
+
+#sortingDD > div > p {
+	padding: 1vw;
+	color: #6b5b88;
+}
+
+#sortingDD > div > p:hover {
+	background-color: #eeeeee;
+	color: black;
+}
+
+/*************************/
+#filtering {
+	position: relative;
+}
+#filteringDD {
+	display: none;
+	position:absolute;
+	top: 4.5vh;
+	left: 7.5vw;
+
+	background-color: white;
+
+	-webkit-box-shadow: 3px 29px 63px 4px rgba(0,0,0,0.1);
+	-moz-box-shadow: 	3px 29px 63px 4px rgba(0,0,0,0.1);
+	box-shadow: 		3px 29px 63px 4px rgba(0,0,0,0.1);
+	border-radius: 4px;
+}
+
+#filtering:hover > #filteringDD {
+	display: block;
+}
+
+#filteringDD > div > p {
+	padding: 1vw;
+	width: 10vw;
+}
+
+#filteringDD > div > p:hover {
+	background-color: #eeeeee;
+}
+
+
+/*************************/
+
+ul {
+	width: 50vw;
+
+	display: flex;
+	flex-direction: column;
+	
+	border-bottom-left-radius: 1rem;
+	border-bottom-right-radius: 1rem;
+
+	padding-top: 4vh;
+
+	-webkit-box-shadow: 3px 29px 63px 4px rgba(0,0,0,0.1);
+	-moz-box-shadow: 	3px 29px 63px 4px rgba(0,0,0,0.1);
+	box-shadow: 		3px 29px 63px 4px rgba(0,0,0,0.1);
+
+	margin-bottom: 20vh;
+
+}
+
+li {
+	list-style: none;
+	padding: 0 2vw;
+	padding-bottom: 4vh;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/***/
+
+.leftie {
+	display: flex;
+	gap: 0.5vw;
+	align-items: center;
+}
+
+.void {
+	width: 3vw;
+	height: 3vw;
+	background-color: lightgray;
+	border-radius: 8px;
+}
+
+.description {
+	font-weight: bold;
+	color: #2c1555;
+	font-size: 1.125rem;
+
+	margin-bottom: 0.7vh;
+}
+
+/***/
+
+.rightie {
+	display: flex;
+	gap: 1vw;
+	align-items: center;
+}
+
+.amount {
+	font-weight: bold;
+}
+
+
+/*****************************/
+
+.dots {
+	border: 2px solid #572aa9;
+	padding: 0.10vh 0.25vw;
+	height: auto;
+	border-radius: 50px;
+}
+
+.dots:hover {
+	cursor: pointer; 
+}
+
+.options {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	right: 22vw;
+	border: 1px solid rgb(247, 240, 240);
+}
+
+.options > a {
+	text-align: center;
+	padding: 1vh;
+	color: #6b5b88;
+	background-color: white;
+	font-size: 0.8vw;
+
+	-webkit-box-shadow: 3px 29px 63px 4px rgba(0,0,0,0.1);
+	-moz-box-shadow: 	3px 29px 63px 4px rgba(0,0,0,0.1);
+	box-shadow: 		3px 29px 63px 4px rgba(0,0,0,0.1);
+}
+
+.options > a:hover {
+	background-color: rgb(236, 236, 236);
+	color: #572aa9
+}
+
+.invisible {
+	display: none;
+}
+
+/**********************************/
+dialog {
+	position: fixed;
+
+	left: 40vw;
+	top: 40vh ;
+
+	padding: 2vh 2vw;
+	border: none;
+	border-radius: 16px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	
+	margin-top: 4vh;
+	margin-bottom: 0.5vh;
+}
+
+.buttons > button {
+	background-color: #6b5b88;
+	
+	border-radius: 8px;
+	
+	color: white;
+	padding: 1vh 2vw;
+
+	border: none;	
+}
+
+.buttons > button:active {
+	background-color: #572AA9;
+}

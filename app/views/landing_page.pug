@@ -1,7 +1,107 @@
-//- extends layout
+html
+  head
+    title= title
+    meta(chartset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="shortcut icon", href="./images/favicon.png", type="image/x-icon")
+    link(rel='stylesheet' href='/stylesheets/landing.css')
+    
 
-//- block style
-//- 	link(rel="stylesheet", href="/stylesheets/landing.css")
-	
-//- block content
-//- 	h1= title
+  body
+    .hero(style="background-image: url('./images/hero-expenseTracker.png')")
+        .navbar
+            a(href="")
+                img(src="./images/expenseTracker-white-logo.png" alt="expenseTracker-white-logo" class="logo-nav") 
+            .logIn-signUp-button-container
+                a(href="/login" class="logIn-navbar-text") 
+                    button(type="button" class="logIn-navbar") Log In 
+                a(href="/signup" class="signUp-navbar-text") 
+                    button(type="button" class="signUp-navbar") Sign Up
+        .hero-left-container 
+            .hero-left-text-container 
+                h1.hero-left-text-main Budget your Income &amp Track your Expenses with Ease
+                p.hero-left-text-subtext Keeping track of your expenses has never been easier 
+             
+            a(href="/signup" class="hero-button-get-started-text") 
+                button(type="button" class="hero-button-get-started") Get Started
+
+    .why-expense-tracker 
+        .why-expense-tracker-main-subtext-container 
+            h2.why-expense-tracker-title Why Expense Tracker ?
+            p.why-expense-tracker-subtext We make so easy to budget and track your expenses 
+        .why-expense-tracker-inner-contents 
+            .why-expense-tracker-inner-content
+                img(src="./images/atm-card.png" alt="atm-card" class="inner-content-image")
+                .why-expense-tracker-inner-content-text-container 
+                    h3.why-expense-tracker-inner-content-text-title Track your Spending
+                    p.why-expense-tracker-inner-content-text-subtext Keeping track of your expenses is very easy with expenseTracker
+            .why-expense-tracker-inner-content
+                img(src="./images/holding-phone.png" alt="atm-card" class="inner-content-image")
+                .why-expense-tracker-inner-content-text-container 
+                    h3.why-expense-tracker-inner-content-text-title Intuitive Interface
+                    p.why-expense-tracker-inner-content-text-subtext ExpenseTracker is very easy to navigate
+            .why-expense-tracker-inner-content
+                img(src="./images/happy-man.png" alt="atm-card" class="inner-content-image")
+                .why-expense-tracker-inner-content-text-container 
+                    h3.why-expense-tracker-inner-content-text-title Available 24/7
+                    p.why-expense-tracker-inner-content-text-subtext You can keep track of expenses anytime and day
+
+    .why-we-do 
+        .why-we-do-main-subtext-container 
+            h2.why-we-do-title Why We Do What We Do
+            p.why-we-do-subtext Here what ExpenseTrackers have to say 
+        .why-we-do-inner-contents 
+            .why-we-do-inner-content-first
+                .why-we-do-inner-content-top-container 
+                    h3.why-we-do-inner-content-text-title-top ''
+                    p.why-we-do-inner-content-text-subtext Ever since I joined expense tracker my saving habits have improved greatly
+                .why-we-do-inner-content-bottom-container 
+                    h3.why-we-do-inner-content-text-title By Sarah
+                    p.why-we-do-inner-content-text-subtext January 2023
+            .why-we-do-inner-content-second
+                .why-we-do-inner-content-top-container 
+                    h3.why-we-do-inner-content-text-title-top ''
+                    p.why-we-do-inner-content-text-subtext Signing up on expense tracker is best financial decision I have ever made
+                .why-we-do-inner-content-bottom-container 
+                    h3.why-we-do-inner-content-text-title By Eze
+                    p.why-we-do-inner-content-text-subtext March 2023
+            .why-we-do-inner-content-third
+                .why-we-do-inner-content-top-container 
+                    h3.why-we-do-inner-content-text-title-top ''
+                    p.why-we-do-inner-content-text-subtext I have been able to achieve my financial goals with expense tracker
+                .why-we-do-inner-content-bottom-container 
+                    h3.why-we-do-inner-content-text-title By Jose
+                    p.why-we-do-inner-content-text-subtext September 2023
+
+    .privacy 
+        .privacy-main-subtext-container 
+            h2.privacy-title Privacy &amp Helpful Customer Support 
+            p.privacy-subtext Our customer support is available 24/7 to provide you with the support you need
+        img(src="./images/lock.png", alt="padlock" class="padlock")
+
+    .footer 
+        img(src="./images/expenseTracker-white-logo.png" alt="expenseTracker-white-logo" class="logo-footer")
+        .footer-right-container 
+            .social-medias-container
+                h3.social-title Social Media
+                .socialMedia-container
+                    p.social-media Twitter
+                    p.social-media Instagram
+                    p.social-media Facebook
+            .expenseTracker-container
+                h3.expenseTracker-title Company
+                .expenseTracker-inner-container
+                    p.expenseTracker Services
+                    p.expenseTracker Customer Support
+                    p.expenseTracker Programs
+            .company-container
+                h3.company-title Company
+                .company-inner-container
+                    p.company About Us
+                    p.company Blog
+                    p.company Green Plan
+
+
+            
+            
+

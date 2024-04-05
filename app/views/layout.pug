@@ -4,39 +4,39 @@ html
     title= title
     meta(chartset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="shortcut icon", href="./images/favicon.png", type="image/x-icon")
+    link(rel="shortcut icon", href="/images/favicon.png", type="image/x-icon")
     link(rel='stylesheet', href='/stylesheets/style.css')
     block style
     
     
   body
     div.header
-      a(href='/')
-        img(src="./images/logo1.png" alt="expense tracker logo" id='logo')
+      a(href='/home')
+        img(src="/images/logo1.png" alt="expense tracker logo" id='logo')
       
       div.dd-container
-        img(src="./images/profile.svg" id='profile')
+        img(src="/images/profile.svg" id='profile')
         div.drop-down
           a(href='/landing_page') landing
           a(href='/users') users
-          a(href='/log_in') switch user
-          a(href='/log_out') log out
+          a(href='/auth/login') switch user
+          a(href='/auth/login') log out
 
     
     div.nav
       a(href='/home' class='nav-home')
         div.home
-          img(src='./images/home.svg')
+          img(src='/images/home.svg')
           p Home
       
       a(href='/categories' class='nav-category')
         div.category
-          img(src='./images/categories.svg')
+          img(src='/images/categories.svg')
           p Category
 
       a(href='/transactions' class='nav-transaction')
         div.transactions
-          img(src='./images/transaction.svg')
+          img(src='/images/transaction.svg')
           p Transaction
 
     div.content

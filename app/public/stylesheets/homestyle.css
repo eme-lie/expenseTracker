@@ -1,0 +1,31 @@
+.form-control:focus,
+.form-select:focus {
+  box-shadow: none;
+  border-color:   var(--Primary-color) !important; 
+}
+.btn{
+  background-color: var(--Primary-color) !important;
+}
+
+.card-body{
+   background-image: url(../images/cardBackground.png) !important; 
+}
+
+/***************/
+
+
+.nav > a > .home {
+	border-bottom: 4px solid #572AA9;
+}
+
+.nav > a > .home > p {
+	color: #462287;
+	font-weight: bold;
+}
+
+.nav > a > div {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 4px solid #ddd4ee;
+  padding: 0!important;
+}

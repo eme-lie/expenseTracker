@@ -1,15 +1,76 @@
 extends layout
 
+block style 
+  link(rel="stylesheet" href="./stylesheets/transaction_list.css")
+  script(src="https://code.jquery.com/jquery-latest.min.js")
+  script(src="./scripts/transactions.js" defer)
+
 block content
   h1= title
 
   if transactions
-    ul
+    div.purple
+        div#sorting 
+          p Sort
+          div#sortingDD
+            div.quantity
+              h4 Amount
+              p#quantAsc Asc
+              p#quantDesc Desc
+
+            div.date
+              h4 Date
+              p#dateAsc Asc
+              p#dateDesc Desc
+
+        div#filtering Filter
+          div#filteringDD
+            div
+              h4 Date
+              p#day Last Day
+              p#week Last Week
+              p#month Last Month
+
+    ul#main
       each transaction in transactions
         li
-          | TransactionID: #{transaction.TransactionID}, Type: #{transaction.Type}, Amount: #{transaction.Amount},
-          | Date: #{transaction.Date ? transaction.Date.toISOString().split('T')[0] : 'N/A'}
-          | Description: #{transaction.Description}
-         
+          div.leftie
+            div.void
+            div
+              p.invisible #{transaction.TransactionID}
+              p.description #{transaction.Description}
+              p.date #{transaction.Date?transaction.Date.toISOString().split('T')[0]:''}
+
+            
+          //-p
+            | TransactionID: #{transaction.TransactionID}, Type: #{transaction.Type}, Amount: #{transaction.Amount},
+            | Date: #{transaction.Date ? transaction.Date.toISOString().split('T')[0] : 'N/A'}
+            | Description: #{transaction.Description}
+
+          div.rightie
+            p.amount #{transaction.Amount}
+            p.dots ⋯
+            div.options.invisible
+              - let urlUpdate = `/transactions/${transaction.TransactionID}/update`
+              //- let urlDelete = `/transactions/${transaction.TransactionID}/delete`
+              a(href=urlUpdate)#update Update
+              a#delete Delete
+      
+    dialog
+      form(method='POST')
+        div
+          p Are you sure you want to delete this transaction?
+          br
+          p.storage
+        
+        div.invisible
+          input(type='text' name='transaction_id' id='secret')
+        
+        div.buttons
+          button(type="submit" id='submit') Yes
+          button(type="close" id='close') No
+
   else
     p There are no users
+
+  

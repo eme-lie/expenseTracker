@@ -17,26 +17,31 @@ router.get('/', async (req, res, next) => {
 });
 
 
-// Creating transactions
+// Displaying form for creating a transactions
 router.get('/create', async (req, res, next) => {
-  const categories = await categoryModel.getCategories()
-  //console.log(categories)
-  res.render('transaction_Form', {
-    title: "Add a Transaction",
-    categories,
-    transaction: undefined,
-  })
+  const categories = await categoryModel.getCategories();
+  try{
+    res.render('transaction_Form', {
+      title: "Add a Transaction",
+      categories,
+      transaction: undefined,
+    })
+
+  }catch(err){
+    next(err)
+  }
 })
 
+// Process creation of a transaction
 router.post('/create', async(req, res, next) => {
-  //console.log(req.body)
-  let passingData = {
-    ...req.body,
-    UserID: Math.round(Math.random()*4),
+  
+  try{
+    const { type, amount, date, categoryId, description, userId } = req.body;
+    const transactionId = await transactionModel.createTransaction(type, amount, date, categoryId, description, userId);
+    res.redirect('/transactions')
+  }catch(err){
+    next(err)
   }
-
-  console.log(passingData)
-  res.redirect('/transactions')
 })
 
 // Updating transactions

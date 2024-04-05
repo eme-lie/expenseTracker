@@ -2,7 +2,7 @@
 -- Create User table
 CREATE TABLE User (
   UserID INTEGER PRIMARY KEY AUTO_INCREMENT,
-  Username VARCHAR(100) UNIQUE,
+  Username VARCHAR(50) UNIQUE,
   Password VARCHAR(100),
   Email VARCHAR(100) UNIQUE,
   FirstName VARCHAR(50),

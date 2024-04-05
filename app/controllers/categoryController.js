@@ -41,9 +41,22 @@ router.post('/:id/update', async (req, res, next) => {
 })
 
 // Deleting a category
-router.get('/:id/delete', async(req, res, next) => {
+router.get('/:id/delete', async (req, res, next) => {
+  const category = await categoryModel.getSingleCategory(req.params.id)
+  const transactions = await transactionModel.getTransactionsbyCategory(req.params.id)
+  
+  res.render("delete_category", { 
+    title: `Delete Category: ${category.CategoryName}`,
+    category,
+    transactions
+  })
+})
+
+router.post('/:id/delete', async (req, res, next) => {
   res.redirect('/categories')
 })
+
+
 
 
 module.exports = router;

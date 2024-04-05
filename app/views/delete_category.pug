@@ -1,0 +1,20 @@
+extends layout
+
+block content
+	h1= title
+	if transactions.length > 0
+		h3 You cannot delete this category because it has follow transactions:
+    
+		ul
+			each transaction in transactions
+				li 
+					| #{transaction.Description} 
+					| - #{transaction.Amount}, 
+					| #{transaction.Date.toISOString().substring(0, 10)}
+	else 
+		form(method='POST')
+			h3 Are you sure you want to delete this category: #{category.CategoryName}
+			div
+				button(type="submit") Yes
+			div
+				a(href="/categories") No

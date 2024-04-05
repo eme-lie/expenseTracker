@@ -26,9 +26,16 @@ async function getSingleTransaction(id) {
   return transaction
 }
 
+async function getTransactionsbyCategory(id){
+  let sql = `SELECT * FROM Transaction WHERE CategoryID=?`
+  let [transaction] = await db.pool.query(sql, [id])
+  //transaction = transaction
+  return transaction
+}
+
 module.exports = {
   getTransactions,
   calculateTotalBalance,
   getSingleTransaction,
-
+  getTransactionsbyCategory
 };

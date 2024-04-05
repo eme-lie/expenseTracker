@@ -1,3 +1,4 @@
+const { query } = require('express');
 const db = require('../services/db');
 
 const getUsers = async () => {
@@ -10,6 +11,16 @@ const getUsers = async () => {
   }
 };
 
+async function checkUser(email){
+  let sql = `SELECT * FROM User WHERE email = ?`
+  let [result] = await db.pool.query(sql, [email])
+  result = result[0]
+  console.log(result)
+
+  return result
+}
+
 module.exports = {
   getUsers,
+  checkUser
 };

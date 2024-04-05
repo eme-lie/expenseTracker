@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const createError = require("http-errors");
+const cookieParser = require('cookie-parser')
 
 const userController = require("./controllers/userController");
 const categoryController = require("./controllers/categoryController");
@@ -17,6 +18,7 @@ app.set("views", "./app/views");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser())
 
 app.use("/users", userController);
 app.use("/categories", categoryController);
@@ -24,11 +26,16 @@ app.use("/transactions", transactionController);
 app.use("/auth", signupandloginController);
 
 app.get("/landing_page", (req, res) => {
+  if(req.cookies.user == null){
+    res.cookie('user', 'admin')
+    console.log("admin mode")
+  }
   res.render("landing_page");
 });
 
 app.get('/', (req, res) => {
   res.redirect('/landing_page')
+  console.log(req.cookies)
 });
 
 app.get('/home', async (req, res, next)=> {

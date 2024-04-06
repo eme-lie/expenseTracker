@@ -8,6 +8,7 @@ body, h1 {
     font-family: 'inter', sans-serif;
     text-align: center;
     margin-top: 20vh;
+    
   }
   
   h1 {
@@ -46,4 +47,3 @@ body, h1 {
     color:black;
   }
   @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-  

@@ -26,9 +26,23 @@ async function getSingleTransaction(id) {
   return transaction
 }
 
+async function deleteTransaction(id) {
+  try {
+    const sql = 'DELETE FROM Transaction WHERE TransactionID = ?';
+    const result = await db.query(sql, [id]);
+    if (result.affectedRows === 0) {
+      throw new Error('Transaction not found');
+    }
+    return true;
+  } catch (error) {
+    console.error('Error deleting transaction:', error);
+    throw error;
+  }
+}
+
 module.exports = {
   getTransactions,
   calculateTotalBalance,
   getSingleTransaction,
-
+  deleteTransaction,
 };

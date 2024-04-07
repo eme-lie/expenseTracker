@@ -56,10 +56,9 @@ router.get('/:id/delete', async (req, res, next) => {
 
 router.post('/:id/delete', async (req, res) => {
   const categoryId = req.params.id;
-
-  // Call the deleteCategory function to delete the category
-  await deleteCategory(categoryId);
-
+  await categoryModel.deleteCategory(categoryId);
+  res.sendStatus(204); // Send success response
+});
 
 router.post('/:id/delete',  async (req, res, next) => {
   res.redirect('/categories')

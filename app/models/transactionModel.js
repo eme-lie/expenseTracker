@@ -27,17 +27,8 @@ async function getSingleTransaction(id) {
 }
 
 async function deleteTransaction(id) {
-  try {
-    const sql = 'DELETE FROM Transaction WHERE TransactionID = ?';
-    const result = await db.query(sql, [id]);
-    if (result.affectedRows === 0) {
-      throw new Error('Transaction not found');
-    }
-    return true;
-  } catch (error) {
-    console.error('Error deleting transaction:', error);
-    throw error;
-  }
+  let sql =`DELETE FROM Transaction WHERE TransactionID = ?`
+  await db.pool.query(sql, [id])
 }
 
 module.exports = {

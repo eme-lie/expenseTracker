@@ -58,20 +58,11 @@ router.post('/:id/update', async(req, res, next) => {
   res.redirect('/transactions')
 })
 
-// DELETING FROM A MODAL
-// router.post('/', async(req, res, next) => {
-//   console.log('use this id to delete in a query: ' + req.body['transaction_id'])
-//   res.redirect('/transactions')
-// })
+router.post('/', async(req, res, next) => {
+  let id = req.body ['transaction_id']
+  transactionModel.deleteTransaction(id)
+  res.redirect('/transactions')
+ })
 
-router.post('/:id/delete', async (req, res, next) => {
-  try {
-    const transactionId = req.params.id;
-    await transactionModel.deleteTransaction(transactionId);
-    res.redirect('/transactions');
-  } catch (err) {
-    next(err);
-  }
-});
 
 module.exports = router;

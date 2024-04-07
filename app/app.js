@@ -22,16 +22,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser())
 
 // setting cookies
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   if(req.cookies.user == null){
     res.cookie('user', 'admin')
     console.log("admin mode")
   }
+  
   if(req.cookies.user == 'admin')
     res.locals.user = req.cookies.user
   else
+    res.locals.user = await userModel.getName(req.cookies.user)
 
-  
   next();
 });
 

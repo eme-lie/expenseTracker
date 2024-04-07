@@ -20,7 +20,16 @@ async function checkUser(email){
   return result
 }
 
+async function getName(id){
+  let sql = `SELECT CONCAT(FirstName," ", LastName) AS "Name" FROM User WHERE UserID = ?`
+  let [result] = await db.pool.query(sql, id)
+  result = result[0].Name
+  console.log(result)
+  return result
+}
+
 module.exports = {
   getUsers,
-  checkUser
+  checkUser,
+  getName,
 };

@@ -41,4 +41,6 @@ module.exports = {
   getCategories,
   getSingleCategory,
   createCategory,
+  deleteCategory,
 };
+

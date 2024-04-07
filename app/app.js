@@ -9,6 +9,7 @@ const transactionController = require("./controllers/transactionController");
 const signupandloginController = require("./controllers/signupandloginController");
 
 const transactionModel = require("./models/transactionModel")
+const userModel = require("./models/userModel")
 
 const app = express();
 
@@ -20,16 +21,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser())
 
+// setting cookies
+app.use((req, res, next) => {
+  if(req.cookies.user == null){
+    res.cookie('user', 'admin')
+    console.log("admin mode")
+  }
+  if(req.cookies.user == 'admin')
+    res.locals.user = req.cookies.user
+  else
+
+  
+  next();
+});
+
 app.use("/users", userController);
 app.use("/categories", categoryController);
 app.use("/transactions", transactionController);
 app.use("/auth", signupandloginController);
 
 app.get("/landing_page", (req, res) => {
-  if(req.cookies.user == null){
-    res.cookie('user', 'admin')
-    console.log("admin mode")
-  }
   res.render("landing_page");
 });
 

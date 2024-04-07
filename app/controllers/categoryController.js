@@ -47,4 +47,26 @@ router.get("/:id/delete", async (req, res, next) => {
   res.redirect("/categories");
 });
 
+// Updating category
+router.get('/:id/update', async(req, res, next) => {
+  category = await categoryModel.getSingleCategory(req.params.id)
+  
+  const categories = await categoryModel.getCategories()
+  res.render('Category_form', {
+    title: `Update Category: ${Category.name}`,
+    category: category,
+  })
+})
+
+router.post('/:id/update', async (req, res, next) => {
+  try {
+    const categoryId = req.params.id;
+    const newCategoryName = req.body.CategoryName;
+
+    await categoryModel.updateCategory(categoryId, { CategoryName: newCategoryName });
+    res.redirect('/categories');
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;

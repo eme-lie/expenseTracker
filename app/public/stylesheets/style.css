@@ -1,24 +1,3 @@
-/*
-
-If you are in charge of the home page, category page or the 
-transaction page; please change the border-bottom color to 
-be light purple and font-weight to be bold. 
-
-It was spicified in the wireframes. 
-
-e.g. 
-
-.nav > a > .category {
-	border-bottom: 4px solid #572AA9;
-}
-
-.nav > a > .category > p {
-	color: #462287;
-	font-weight: bold;
-}
-
-*/
-
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 :root {
@@ -173,14 +152,14 @@ a {
   margin: 0 15vw;
 }
 
-/*
-.nav > a > .category {
-	border-bottom: 4px solid #572AA9;
-}
+.greetings > p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #2c1555;
+  transition: color 5s;
+} 
 
-.nav > a > .category > p {
-	color: #462287;
-	font-weight: bold;
+.greetings > p:hover {
+  color: #572aa9;
 }
-
-*/

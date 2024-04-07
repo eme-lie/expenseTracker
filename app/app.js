@@ -21,17 +21,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser())
 
-// setting cookies
+// setting up cookies
 app.use(async (req, res, next) => {
   if(req.cookies.user == null){
     res.cookie('user', 'admin')
     console.log("admin mode")
   }
   
-  if(req.cookies.user == 'admin')
-    res.locals.user = req.cookies.user
-  else
+  if(req.cookies.user == 'admin' || req.cookies.user==null){
+    res.locals.user = "admin"
+  }
+  else {
     res.locals.user = await userModel.getName(req.cookies.user)
+  }
+    
 
   next();
 });

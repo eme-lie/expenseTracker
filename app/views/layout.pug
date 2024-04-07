@@ -13,20 +13,20 @@ html
     
   body
     div.header
-      a(href='/')
+      a(href='/home')
         img(src="/images/logo1.png" alt="expense tracker logo" id='logo')
       
       div.dd-container
         img(src="/images/profile.svg" id='profile')
         div.drop-down
-          a(href='/landing_page') landing
+          a(href='/landing_page') Landing Page
           if user == 'admin'
-            a(href='/users') #{ user ? user : "not working" }
-          a(href='/auth/login') switch user
-          a(href='/auth/logout') log out
+            a(href='/users') Users
+          a(href='/auth/login') Switch User
+          a(href='/auth/logout') Log Out
 
     div.greetings 
-      p #{ user }
+      p Hello, #{ user }!
     
     div.nav
       a(href='/home' class='nav-home')

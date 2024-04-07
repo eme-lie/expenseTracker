@@ -15,7 +15,6 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  console.log(req.body)
   let result = await userModel.checkUser(req.body.email)
   if(result){
     res.cookie('user', result.UserID)

@@ -22,12 +22,19 @@ const calculateTotalBalance = (transactions) => {
 
 };
 
+
+async function deleteTransaction(id) {
+  let sql =`DELETE FROM Transaction WHERE TransactionID = ?`
+  await db.pool.query(sql, [id])
+};
+
 async function getSingleTransaction(id) {
   let sql = `SELECT * FROM Transaction WHERE TransactionID=?`
   let transaction = await db.pool.query(sql, [id])
   transaction = transaction[0][0]
   return transaction
-}
+};
+
 
 async function updateTransaction(id, newTransaction){
   let sql = `UPDATE Transaction SET `
@@ -64,6 +71,6 @@ module.exports = {
   getTransactions,
   calculateTotalBalance,
   getSingleTransaction,
-  updateTransaction
-
+  deleteTransaction,
+  updateTransaction,
 };

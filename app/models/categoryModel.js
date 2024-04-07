@@ -32,6 +32,18 @@ async function getSingleCategory(id) {
   return category;
 }
 
+async function deleteCategory(id) {
+  let sql = `DELETE FROM category WHERE CategoryID=?`;
+  await db.pool.query(sql, [id]);
+}
+
+async function getSingleCategory(id) {
+  let sql = `SELECT * FROM category WHERE CategoryID=?`;
+  let category = await db.pool.query(sql, [id]);
+  category = category[0][0];
+  return category;
+}
+
 module.exports = {
   getCategories,
   getSingleCategory,

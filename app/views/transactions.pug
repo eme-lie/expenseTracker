@@ -52,9 +52,9 @@ block content
             p.dots ⋯
             div.options.invisible
               - let urlUpdate = `/transactions/${transaction.TransactionID}/update`
-              //- let urlDelete = `/transactions/${transaction.TransactionID}/delete`
               a(href=urlUpdate)#update Update
-              a#delete Delete
+              a(href="#" data-id=transaction.TransactionID)#delete Delete
+
       
     dialog
       form(method='POST')

@@ -39,6 +39,13 @@ router.post('/create', async(req, res, next) => {
   res.redirect('/transactions')
 })
 
+// Deleting transactions
+router.post('/', async(req, res, next) => {
+  let id = req.body ['transaction_id']
+  transactionModel.deleteTransaction(id)
+  res.redirect('/transactions')
+ })
+
 // Updating transactions
 router.get('/:id/update', async(req, res, next) => {
   transaction = await transactionModel.getSingleTransaction(req.params.id)
@@ -48,20 +55,27 @@ router.get('/:id/update', async(req, res, next) => {
     title: `Update Transaction: ${transaction.Description}`,
     categories,
     transaction,
-
   })
 })
 
 router.post('/:id/update', async(req, res, next) => {
-  transaction = await transactionModel.getSingleTransaction(req.params.id)
-  console.log(req.body)
-  res.redirect('/transactions')
+  let newTransaction = {
+    ...req.body
+  }
+
+  newTransaction['Date'] = new Date(newTransaction['Date']).toISOString().slice(0, 10)
+
+  if((newTransaction['Type'] == 'expense') && (Number(newTransaction['Amount']) > 0))
+    newTransaction['Amount'] = "-" + newTransaction['Amount']
+
+  if((newTransaction['Type'] == 'income') && (Number(newTransaction['Amount']) < 0))
+    newTransaction['Amount'] = Number(newTransaction['Amount']) * -1
+
+  await transactionModel.updateTransaction(req.params.id, newTransaction)
+
+  res.redirect('/transactions');
 })
 
-// DELETING FROM A MODAL
-router.post('/', async(req, res, next) => {
-  console.log('use this id to delete in a query: ' + req.body['transaction_id'])
-  res.redirect('/transactions')
-})
+
 
 module.exports = router;

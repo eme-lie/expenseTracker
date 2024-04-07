@@ -32,7 +32,7 @@ router.post('/create', async(req, res, next) => {
   //console.log(req.body)
   let passingData = {
     ...req.body,
-    UserID: req.cookies.user=='admin' ? Math.round(Math.random()*4) : req.cookies.user,
+    UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
   }
 
   console.log(passingData)

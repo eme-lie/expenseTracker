@@ -1,7 +1,6 @@
 const express = require("express");
 // const signupandloginModel = require("../models/signupandloginModel");
 const userModel = require("../models/userModel")
-const cookieParser = require('cookie-parser')
 const router = express.Router();
 
 router.get("/signup", (req, res) => {

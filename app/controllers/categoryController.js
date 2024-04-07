@@ -55,12 +55,8 @@ router.get('/:id/delete', async (req, res, next) => {
 })
 
 router.post('/:id/delete', async (req, res) => {
-  const categoryId = await  categoryModelategorymodel.deleteCategory(req.params.id)
+  const categoryId = await categoryModel.deleteCategory(req.params.id)
+  res.redirect('/categories')
 });
 
-router.post('/:id/delete',  async (req, res, next) => {
-  res.redirect('/categories')
-})
-
-
-module.exports = router;
+module.exports = router

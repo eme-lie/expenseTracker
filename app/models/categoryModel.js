@@ -23,6 +23,7 @@ const createCategory = async (category) => {
   }
 };
 
+//Deleting a category
 async function deleteCategory(id) {
   let sql = `DELETE FROM category WHERE CategoryID=?`;
   await db.pool.query(sql, [id]);
@@ -34,8 +35,6 @@ async function getSingleCategory(id) {
   category = category[0][0];
   return category;
 }
-
-
 
 module.exports = {
   getCategories,

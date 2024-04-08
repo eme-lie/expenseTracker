@@ -18,17 +18,23 @@ html
                         h1.sign-up-title Welcome to ExpenseTracker
                         form(method="POST" class="sign-up-form")
                             .detail
-                                label(for="name", class="label") First Name
-                                input(type="text", name="name", id="name", class="input")
+                                label(for="name", class="label") Firstname
+                                input(type="text", name="FirstName", id="FirstName", class="input")
+                            .detail
+                                label(for="name", class="label") Lastname
+                                input(type="text", name="LastName", id="LastName", class="input")
+                            .detail
+                                label(for="name", class="label") Date of Birth
+                                input(type="date", name="DateOfBirth", id="DateOfBirth", class="input")
                             .detail
                                 label(for="user-name", class="label") Username
-                                input(type="text", name="user-name", id="user-name", class="input")
+                                input(type="text", name="Username", id="Username", class="input")
                             .detail
                                 label(for="email", class="label") Email
-                                input(type="email", name="email", id="email", class="input")
+                                input(type="email", name="Email", id="Email", class="input")
                             .detail
                                 label(for="password", class="label") Password
-                                input(type="password", name="password", id="password", class="input")
+                                input(type="password", name="Password", id="Password", class="input")
                             .button-and-text-container
                                 //-a(href="/home" class="sign-up-login-button") Create Account
                                 button(type="submit" class='sign-up-login-button') Sign Up!

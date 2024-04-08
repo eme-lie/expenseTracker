@@ -55,7 +55,7 @@
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
     color: var(--Neutral400-text-main);
-    font-size: 16px;
+    font-size: 0.75vw;
   }
 
   body {
@@ -254,7 +254,7 @@
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
     color: var(--Neutral400-text-main);
-    font-size: 12px;
+    font-size: 0.75vw;
   }
 
   body {

@@ -1,6 +1,7 @@
 const express = require("express");
-// const signupandloginModel = require("../models/signupandloginModel");
+const signupandloginModel = require("../models/signupandloginModel");
 const userModel = require("../models/userModel")
+const bcrypt = require("bcrypt")
 const router = express.Router();
 
 // Sign Up
@@ -12,6 +13,8 @@ router.get("/signup", function(req, res){
 });
 
 router.post("/signup", async function(req, res){
+  //data.Password = 
+  console.log(data)
   res.redirect('/home')
 })
 

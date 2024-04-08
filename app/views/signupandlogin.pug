@@ -1,9 +1,9 @@
 html
   head
-    title= title
+    title #{title}
     meta(chartset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(rel="shortcut icon", href="./images/favicon.png", type="image/x-icon")
+    link(rel="shortcut icon", href="/images/favicon.png", type="image/x-icon")
     link(rel='stylesheet' href='/stylesheets/signupandlogin.css')
 
     body
@@ -42,7 +42,7 @@ html
                         a(href="/landing_page")
                             img(src="/images/back-button.svg" alt="expenseTracker-back-button" class="back-button")
                         h1.login-title Welcome to ExpenseTracker
-                        form(action="/submit", method="post" class="login-form")
+                        form(method="POST" class="login-form")
                             .detail
                                 label(for="email", class="label") Email
                                 input(type="email", name="email", id="email", class="input")
@@ -50,7 +50,8 @@ html
                                 label(for="password", class="label") Password
                                 input(type="password", name="password", id="password", class="input")
                             .button-and-text-container
-                                a(href="/home" class="sign-up-login-button") Log In
+                                //-a(href="/home" class="sign-up-login-button") Log In
+                                button(type="submit" class='sign-up-login-button') Login In
                                 .texts 
                                     p.main-text Don't have an account?
                                     a(href="/auth/signup")

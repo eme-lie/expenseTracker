@@ -1,7 +1,7 @@
 const express = require("express");
 const signupandloginModel = require("../models/signupandloginModel");
 const userModel = require("../models/userModel")
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 const router = express.Router();
 
 // Sign Up
@@ -13,14 +13,19 @@ router.get("/signup", function(req, res){
 });
 
 router.post("/signup", async function(req, res){
-  //data.Password = 
+  let data = {
+    ...req.body
+  }
+  const salt = bcrypt.genSaltSync(13)
+  const hash = await bcrypt.hash(data.Password, salt)
+  data.Password = hash
+
   console.log(data)
   res.redirect('/home')
 })
 
 // Login
 router.get("/login", function(req, res){
-  //   signupandloginModel.loginView();
   res.render("signupandlogin", { 
     current_view: "login",
     title: "Log In" 
@@ -29,6 +34,10 @@ router.get("/login", function(req, res){
 
 router.post("/login", async function (req, res){
   let result = await userModel.checkUser(req.body.email)
+
+  //const salt = bcrypt.genSaltSync(13)
+  //const isMatch = await bcrypt.compare(password, hash)
+
   if(result){
     res.cookie('user', result.UserID)
     res.redirect('/home')

@@ -1,0 +1,30 @@
+
+h1 {
+    color: #333;
+  }
+  
+  h3 {
+    color: #555;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 5px;
+  }
+  
+  button {
+    background-color: #337ab7;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  a {
+    color: #337ab7;
+    text-decoration: none;
+  }

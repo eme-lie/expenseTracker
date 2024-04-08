@@ -3,15 +3,20 @@ const express = require("express");
 const userModel = require("../models/userModel")
 const router = express.Router();
 
-router.get("/signup", (req, res) => {
+// Sign Up
+router.get("/signup", function(req, res){
   res.render("signupandlogin", { 
     current_view: "signup", 
     title: "Sign Up"
   });
-  //   signupandloginModel.signUpView();
 });
 
-router.get("/login", (req, res) => {
+router.post("/signup", async function(req, res){
+  res.redirect('/home')
+})
+
+// Login
+router.get("/login", function(req, res){
   //   signupandloginModel.loginView();
   res.render("signupandlogin", { 
     current_view: "login",
@@ -19,7 +24,7 @@ router.get("/login", (req, res) => {
   });
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", async function (req, res){
   let result = await userModel.checkUser(req.body.email)
   if(result){
     res.cookie('user', result.UserID)
@@ -31,15 +36,14 @@ router.post("/login", async (req, res) => {
 
 })
 
-router.get("/logout", async (req, res) => {
+// Log out
+router.get("/logout", async function(req, res) {
   res.render('log_out', { title: "Log Out"})
 })
 
-router.post("/logout", async (req, res) => {
+router.post("/logout", async function(req, res){
   res.cookie('user', 'admin')
   res.redirect('/')
 })
-
-
 
 module.exports = router;

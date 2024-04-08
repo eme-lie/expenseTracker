@@ -16,7 +16,7 @@ html
                         a(href="/landing_page")
                             img(src="/images/back-button.svg" alt="expenseTracker-back-button" class="back-button")
                         h1.sign-up-title Welcome to ExpenseTracker
-                        form(action="/submit", method="post" class="sign-up-form")
+                        form(method="POST" class="sign-up-form")
                             .detail
                                 label(for="name", class="label") First Name
                                 input(type="text", name="name", id="name", class="input")
@@ -30,7 +30,8 @@ html
                                 label(for="password", class="label") Password
                                 input(type="password", name="password", id="password", class="input")
                             .button-and-text-container
-                                a(href="/home" class="sign-up-login-button") Create Account
+                                //-a(href="/home" class="sign-up-login-button") Create Account
+                                button(type="submit" class='sign-up-login-button') Sign Up!
                                 .texts 
                                     p.main-text Already have an account?
                                     a(href="/auth/login")

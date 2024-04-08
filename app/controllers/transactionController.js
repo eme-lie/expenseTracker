@@ -8,7 +8,7 @@ const categoryModel = require('../models/categoryModel')
 // Reading transactions
 router.get('/', async (req, res, next) => {
   try {
-    const transactions = await transactionModel.getTransactions();
+    const transactions = await transactionModel.getTransactions(req.cookies.user);
     res.render('transactions', { title: 'Transaction List', transactions });
 
   } catch (err) {
@@ -32,7 +32,7 @@ router.post('/create', async(req, res, next) => {
   //console.log(req.body)
   let passingData = {
     ...req.body,
-    UserID: Math.round(Math.random()*4),
+    UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
   }
 
   console.log(passingData)

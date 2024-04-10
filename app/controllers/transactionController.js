@@ -30,14 +30,15 @@ router.get('/create', async (req, res, next) => {
 
 router.post('/create', async(req, res, next) => {
   try{
-
+    let passingData = {
+      ...req.body,
+      UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
+    }
+    const { Type, Amount, Date, CategoryID, Description, UserID } = passingData
   }catch (err) {
    next(err)
   }
-  let passingData = {
-    ...req.body,
-    UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
-  }
+ 
 
   console.log('passingData', passingData)
   res.redirect('/transactions')

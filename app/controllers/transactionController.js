@@ -29,13 +29,15 @@ router.get('/create', async (req, res, next) => {
 })
 
 router.post('/create', async(req, res, next) => {
+  console.log('req.cookies', req.cookies);
   try{
     let passingData = {
       ...req.body,
       UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
     }
+    console.log('passingData', passingData);
     const { Type, Amount, Date, CategoryID, Description, UserID } = passingData
-    const transactionId = await transactionModel.createTransaction(UserID, Type, Amount, Date, CategoryID, Description, UserID);
+    const transactionId = await transactionModel.createTransaction(Type, Amount, Date, CategoryID, Description, UserID);
     res.status(201).json({ newTransactionId: transactionId})
   res.redirect('/transactions')
   }catch (err) {

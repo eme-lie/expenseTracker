@@ -31,7 +31,7 @@ const calculateTotalBalance = (transactions) => {
 };
 
 // Create transaction
-const createTransaction = async (type, amount, date, categoryId, description, userId) => {
+const createTransaction = async (transactionId, type, amount, date, categoryId, description, userId) => {
   try{
     const result = await db.query(
       'INSERT INTO Transaction (Type, Amount, Date, CategoryID, Description, UserID) VALUES (?, ?, ?, ?, ?, ?)', 
@@ -73,7 +73,7 @@ async function updateTransaction(id, newTransaction){
     if(oldTransaction[key] != newTransaction[key]){
       //sql += `${key} = "${newTransaction[key]}", `
       keys.push(`${key} = ?`)
-      values.push(newTransaction[key])
+      values.push(newTransaction[key] !== undefined ? newTransaction[key] : null)
     }
   }
 

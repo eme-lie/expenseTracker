@@ -1,3 +1,81 @@
-h3 {
-    color: red;
+.container {
+    display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  h1 {
+	text-align: center;
+	font-size: 1.5rem;
+	color: var(--Primary-color);
+	margin: 4vh 0;
 }
+  
+  h3 {
+    margin-top: 10px;
+    margin-bottom: 10px; /* Add space below the h3 elements */
+  }
+  
+  ul {
+  
+    width: 50vw;
+    margin-bottom: 20vh;
+
+    display: flex;
+    flex-direction: column;
+
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+    -webkit-box-shadow: -1px 24px 45px 8px rgba(0,0,0,0.18);
+    -moz-box-shadow: -1px 24px 45px 8px rgba(0,0,0,0.18);
+    box-shadow: -1px 24px 45px 8px rgba(0,0,0,0.18);
+   
+  }
+  
+  li {
+    list-style: none;
+    padding: 2vh 2vw;
+    
+    border-bottom: 1px solid lightgray;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .amount {
+	font-weight: bold;
+  }
+
+  .description {
+	font-weight: bold;
+	color: #2c1555;
+	font-size: 1.125rem;
+
+	margin-bottom: 0.7vh;
+}
+
+
+
+  
+  button[type="submit"] {
+    background-color: #007bff; /* Blue background color for the button */
+    color: #fff; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Add rounded corners */
+    padding: 10px 20px; /* Add padding */
+    cursor: pointer; /* Show pointer cursor on hover */
+    margin-top: 20px; /* Add space above the button */
+  }
+  
+  a {
+    color: #007bff; /* Blue color for links */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Add underline on hover */
+  }
+  

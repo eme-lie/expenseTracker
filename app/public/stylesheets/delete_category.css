@@ -60,22 +60,4 @@
 
 
   
-  button[type="submit"] {
-    background-color: #007bff; /* Blue background color for the button */
-    color: #fff; /* White text color */
-    border: none; /* Remove border */
-    border-radius: 4px; /* Add rounded corners */
-    padding: 10px 20px; /* Add padding */
-    cursor: pointer; /* Show pointer cursor on hover */
-    margin-top: 20px; /* Add space above the button */
-  }
-  
-  a {
-    color: #007bff; /* Blue color for links */
-    text-decoration: none; /* Remove underline */
-  }
-  
-  a:hover {
-    text-decoration: underline; /* Add underline on hover */
-  }
-  
+ 

@@ -1,4 +1,4 @@
-.container {
+.content {
     display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -57,6 +57,38 @@
 	margin-bottom: 0.7vh;
 }
 
+.container {
+    
+	position: fixed;
+    justify-content: center;
+	align-items: center;
+	padding: 2vh 2vw;
+	border: none;
+	border-radius: 16px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	
+	margin-top: 4vh;
+	margin-bottom: 0.5vh;
+}
+
+.buttons > button {
+	background-color: #6b5b88;
+	
+	border-radius: 8px;
+	
+	color: white;
+	padding: 1vh 2vw;
+
+	border: none;	
+}
+
+.buttons > button:active {
+	background-color: #572AA9;
+}
 
 
   

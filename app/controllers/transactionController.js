@@ -35,7 +35,8 @@ router.post('/create', async(req, res, next) => {
       UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
     }
     const { Type, Amount, Date, CategoryID, Description, UserID } = passingData
-    const transactionId = await 
+    const transactionId = await createTransaction(UserID, Type, Amount, Date, CategoryID, Description, UserID);
+    res.status(201).json({ newTransactionId: transactionId})
   }catch (err) {
    next(err)
   }

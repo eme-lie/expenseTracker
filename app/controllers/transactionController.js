@@ -37,13 +37,11 @@ router.post('/create', async(req, res, next) => {
     const { Type, Amount, Date, CategoryID, Description, UserID } = passingData
     const transactionId = await createTransaction(UserID, Type, Amount, Date, CategoryID, Description, UserID);
     res.status(201).json({ newTransactionId: transactionId})
+  res.redirect('/transactions')
   }catch (err) {
    next(err)
   }
  
-
-  console.log('passingData', passingData)
-  res.redirect('/transactions')
 })
 
 // Deleting transactions

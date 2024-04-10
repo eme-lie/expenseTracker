@@ -29,7 +29,6 @@ router.get('/create', async (req, res, next) => {
 })
 
 router.post('/create', async(req, res, next) => {
-  console.log('req.cookies', req.cookies);
   try{
     let passingData = {
       ...req.body,

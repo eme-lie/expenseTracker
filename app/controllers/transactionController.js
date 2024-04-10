@@ -29,7 +29,11 @@ router.get('/create', async (req, res, next) => {
 })
 
 router.post('/create', async(req, res, next) => {
-  console.log('req', req)
+  try{
+
+  }catch (err) {
+   next(err)
+  }
   let passingData = {
     ...req.body,
     UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,

@@ -48,7 +48,7 @@ const createTransaction = async (transactionId, type, amount, date, categoryId, 
   try{
     const result = await db.query(
       'INSERT INTO Transaction (TransactionID, Type, Amount, Date, CategoryID, Description, UserID), VALUES (?, ?, ?, ?, ?, ?, ?)', 
-      [])
+      [transactionId, type, amount, date, categoryId, description, userId])
     return result
   }catch (error){
     console.error('Error creating transaction:', error)

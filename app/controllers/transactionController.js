@@ -29,13 +29,13 @@ router.get('/create', async (req, res, next) => {
 })
 
 router.post('/create', async(req, res, next) => {
-  //console.log(req.body)
+  console.log('req', req)
   let passingData = {
     ...req.body,
     UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
   }
 
-  console.log(passingData)
+  console.log('passingData', passingData)
   res.redirect('/transactions')
 })
 

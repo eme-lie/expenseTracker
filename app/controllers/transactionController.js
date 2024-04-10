@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const createTransaction = require('../models/transactionModel').createTransaction;
+const transactionModel = require('../models/transactionModel');
 const categoryModel = require('../models/categoryModel')
 
 
@@ -35,7 +35,7 @@ router.post('/create', async(req, res, next) => {
       UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
     }
     const { Type, Amount, Date, CategoryID, Description, UserID } = passingData
-    const transactionId = await createTransaction(UserID, Type, Amount, Date, CategoryID, Description, UserID);
+    const transactionId = await transactionModel.createTransaction(UserID, Type, Amount, Date, CategoryID, Description, UserID);
     res.status(201).json({ newTransactionId: transactionId})
   res.redirect('/transactions')
   }catch (err) {

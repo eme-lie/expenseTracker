@@ -30,6 +30,24 @@ const calculateTotalBalance = (transactions) => {
 
 };
 
+// const createCategory = async (category) => {
+//   try {
+//     const result = await db.query(
+//       "INSERT INTO Category (CategoryName) VALUES (?)",
+//       [category]
+//     );
+//     return result;
+//   } catch (error) {
+//     console.error("Error creating category:", error);
+//     throw error;
+//   }
+// };
+
+// Create transaction
+const createTransaction = async (transaction_id, type, amount, date, categoryId, description, userId) => {
+
+}
+
 
 async function deleteTransaction(id) {
   let sql =`DELETE FROM Transaction WHERE TransactionID = ?`
@@ -89,4 +107,5 @@ module.exports = {
   getTransactionsbyCategory,
   deleteTransaction,
   updateTransaction,
+  createTransaction
 };

@@ -22,9 +22,9 @@ block content
     .container
       form(method='POST')
         div
-          h3 Are you sure you want to delete this category: #{category.CategoryName}
+          p Are you sure you want to delete this category: #{category.CategoryName}
           br
 
-        div.buttons
-          button(type="submit" id="submit") Yes
-          a(href="/categories" id="close") No
+        .buttons
+          button(type="submit" id='submit') Yes
+          button(type="button" id="close" onclick="window.location.href='/categories'") No

@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+.content{
+  margin-top: 8vh;
+}
+
 .nav > a > .category {
 	border-bottom: 4px solid #572AA9;
 }
@@ -18,6 +22,7 @@ h1 {
     color: var(--Primary-color);
     margin-bottom: 4vh;
     font-size: 1.5rem;
+  
 }
 
 .purple {

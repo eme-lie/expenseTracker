@@ -13,5 +13,5 @@ block content
       div.form-floating.mb-3
         input.form-control#categoryName(type="text", placeholder="Add Category" name="categoryName" required value=`${category ? category.CategoryName : ''}`)
         label(for="categoryName")
-        - let urlUpdate = `/categories/${category.CategoryID}/update`
-        button.btn.btn-primary(href=urlUpdate, type="submit") #{ category ? 'Update Category' : 'Add a Category' }   
+        - let urlUpdate = category && category.CategoryID ? `/categories/${category.CategoryID}/update` : ''
+        button.btn.btn-primary(type="submit")(onclick=urlUpdate ? `location.href='${urlUpdate}'` : '') #{ category ? 'Update Category' : 'Add a Category' }

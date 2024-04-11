@@ -34,7 +34,6 @@ router.post('/create', async(req, res, next) => {
       ...req.body,
       UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
     }
-    console.log('passingData', passingData);
     const { Type, Amount, Date, CategoryID, Description, UserID } = passingData
     const transactionId = await transactionModel.createTransaction(Type, Amount, Date, CategoryID, Description, UserID);
     console.log('transactionId', transactionId); // Leave the console.log for now, we will figure out later how to pass the transactionId to view

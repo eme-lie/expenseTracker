@@ -33,11 +33,9 @@ const calculateTotalBalance = (transactions) => {
 // Create transaction
 const createTransaction = async (type, amount, date, categoryId, description, userId) => {
   try{
-    console.log('hello1');
     const result = await db.query(
       'INSERT INTO Transaction (Type, Amount, Date, CategoryID, Description, UserID) VALUES (?, ?, ?, ?, ?, ?)', 
       [type, amount, date, categoryId, description, userId])
-      console.log('result', result);
     return result.insertId
   }catch (error){
     console.error('Error creating transaction:', error)

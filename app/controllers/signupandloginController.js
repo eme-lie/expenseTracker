@@ -21,6 +21,12 @@ router.post("/signup", async function(req, res){
   data.Password = hash
 
   console.log(data)
+  let result = await userModel.addUser(data)
+
+  if(result == "USER EXISTS")
+    res.redirect('/auth/signup')
+  
+  
   res.redirect('/home')
 })
 
@@ -33,19 +39,29 @@ router.get("/login", function(req, res){
 });
 
 router.post("/login", async function (req, res){
-  let result = await userModel.checkUser(req.body.email)
-
-  //const salt = bcrypt.genSaltSync(13)
-  //const isMatch = await bcrypt.compare(password, hash)
-
-  if(result){
-    res.cookie('user', result.UserID)
-    res.redirect('/home')
+  try{
+    let result = await userModel.checkUser(req.body.email)  
+  
+    //if(result && isMatch){
+    if(result){
+      let truePassword = result.Password
+      let formPassword = req.body.password
+      const isMatch = await bcrypt.compare(formPassword, truePassword)
+      
+      if(isMatch){
+        res.cookie('user', result.UserID)
+        res.redirect('/home')
+      }
+      else {
+        res.redirect('/auth/login')
+      }
+    } else {
+      res.redirect('/auth/login')
+    }
+  } catch(err){
+    console.error(err)
+    throw err
   }
-  else{
-    res.redirect('/auth/login')
-  }
-
 })
 
 // Log out

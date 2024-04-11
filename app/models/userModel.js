@@ -11,7 +11,7 @@ const getUsers = async () => {
   }
 };
 
-async function checkUser(email){
+async function checkUser(email, username=''){
   try {
     let sql = `SELECT * FROM User WHERE email = ?`
     let [result] = await db.pool.query(sql, [email])
@@ -21,7 +21,6 @@ async function checkUser(email){
     console.error(err);
     throw err
   }
-
 }
 
 async function getName(id){
@@ -34,11 +33,31 @@ async function getName(id){
     console.error(err)
     throw err
   }
-  
+}
+
+async function addUser(data){
+  try{
+    let check = await checkUser(data.Email, data.Username)
+    if(check != undefined)
+      return "USER EXISTS"
+      
+    let sql = `INSERT INTO User(FirstName, LastName, DateOfBirth, Username, Email, Password) VALUES(?)`
+    let user = []
+
+    for([keys, values] of Object.entries(data))
+      user.push(values)
+    
+    await db.pool.query(sql, [user])
+  } catch(err){
+    console.error(err)
+    throw err
+  }
+
 }
 
 module.exports = {
   getUsers,
   checkUser,
   getName,
+  addUser
 };

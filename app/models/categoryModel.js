@@ -36,10 +36,20 @@ async function getSingleCategory(id) {
   return category;
 }
 
+// 
+
+// Update a category
+async function updateCategory(categoryID, categoryName) {
+  const query = "UPDATE Category SET CategoryName = ? WHERE CategoryID = ?";
+  const values = [categoryName, categoryID];
+  await db.query(query, values);
+}
+
 module.exports = {
   getCategories,
   getSingleCategory,
   createCategory,
+  updateCategory,
   deleteCategory,
 };
 

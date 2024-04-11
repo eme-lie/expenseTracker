@@ -14,4 +14,4 @@ block content
         input.form-control#categoryName(type="text", placeholder="Add Category" name="categoryName" required value=`${category ? category.CategoryName : ''}`)
         label(for="categoryName")
         - let urlUpdate = `/categories/${category.CategoryID}/update`
-        a.btn.btn-primary(href=urlUpdate) #{ category ? 'Update Category' : 'Add a Category' }   
+        button.btn.btn-primary(href=urlUpdate, type="submit") #{ category ? 'Update Category' : 'Add a Category' }   

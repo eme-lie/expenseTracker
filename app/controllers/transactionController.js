@@ -39,6 +39,9 @@ router.post('/create', async(req, res, next) => {
     const transactionId = await transactionModel.createTransaction(Type, Amount, Date, CategoryID, Description, UserID);
     // Send JSON response
     res.status(201).json({ newTransactionId: transactionId})
+    // Redirect using Javascript after JSON response is sent
+    res.write(`<script>window.location,href = '/transactions';</script>`)
+    res.end();
   
   }catch (err) {
    next(err)

@@ -43,30 +43,20 @@ router.post("/:id/update", async (req, res, next) => {
 });
 
 // Deleting a category
-router.get("/:id/delete", async (req, res, next) => {
-  res.redirect("/categories");
-});
-
-// Updating category
-router.get('/:id/update', async(req, res, next) => {
-  category = await categoryModel.getSingleCategory(req.params.id)
+router.get('/:id/delete', async (req, res, next) => {
+  const category = await categoryModel.getSingleCategory(req.params.id)
+  const transactions = await transactionModel.getTransactionsbyCategory(req.params.id)
   
-  const categories = await categoryModel.getCategories()
-  res.render('Category_form', {
-    title: `Update Category: ${Category.name}`,
-    category: category,
+  res.render("delete_category", { 
+    title: `Delete Category: ${category.CategoryName}`,
+    category,
+    transactions
   })
 })
 
-router.post('/:id/update', async (req, res, next) => {
-  try {
-    const categoryId = req.params.id;
-    const newCategoryName = req.body.CategoryName;
-
-    await categoryModel.updateCategory(categoryId, { CategoryName: newCategoryName });
-    res.redirect('/categories');
-  } catch (error) {
-    next(error);
-  }
+router.post('/:id/delete', async (req, res) => {
+  await categoryModel.deleteCategory(req.params.id)
+  res.redirect('/categories')
 });
-module.exports = router;
+
+module.exports = router

@@ -1,9 +1,17 @@
 const db = require('../services/db');
 
-const getTransactions = async () => {
+const getTransactions = async (UserID='admin') => {
   try {
-    const rows = await db.query('SELECT * FROM Transaction');
-    return rows;
+    let sql = `SELECT * FROM Transaction`
+
+    if(UserID != 'admin'){
+      sql += ` WHERE UserID=?`
+      const [rows] = await db.pool.query(sql, [UserID])
+      return rows
+    } else{
+      return await db.query(sql);
+    }
+
   } catch (error) {
     console.error('Error fetching transactions:', error);
     throw error;
@@ -67,10 +75,18 @@ async function updateTransaction(id, newTransaction){
   await db.pool.query(sql, values)
 }
 
+async function getTransactionsbyCategory(id){
+  let sql = `SELECT * FROM Transaction WHERE CategoryID=?`
+  let [transaction] = await db.pool.query(sql, [id])
+  //transaction = transaction
+  return transaction
+}
+
 module.exports = {
   getTransactions,
   calculateTotalBalance,
   getSingleTransaction,
+  getTransactionsbyCategory,
   deleteTransaction,
   updateTransaction,
 };

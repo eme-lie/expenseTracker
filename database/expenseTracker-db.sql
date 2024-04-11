@@ -52,6 +52,11 @@ VALUES
 	('adam789', 'password123', 'adam@example.com', 'Adam', 'Jenkins', '1991-01-12'),
 	('zoe1011', 'pass1234', 'zoe@example.com', 'Zoe', 'de Gaul', '1995-12-22');
 
+INSERT INTO User(Username, Password, Email, FirstName, LastName, DateOfBirth) 
+VALUES('admin', 'admin', 'admin@admin.com', 'Admin', null, '2000-01-01');
+
+UPDATE User SET UserID = 0 WHERE Username = 'admin';
+
 -- Insert sample data into Transaction table
 INSERT INTO Transaction (Type, Amount, Date, CategoryID, Description, UserID)
 VALUES

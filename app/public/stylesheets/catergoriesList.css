@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+.content{
+  margin-top: 8vh;
+}
+
 .nav > a > .category {
 	border-bottom: 4px solid #572AA9;
 }
@@ -18,6 +22,7 @@ h1 {
     color: var(--Primary-color);
     margin-bottom: 4vh;
     font-size: 1.5rem;
+  
 }
 
 .purple {
@@ -59,7 +64,7 @@ h1 {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 120px;
+    min-width: 100px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
     border-radius: 5px;
@@ -74,8 +79,8 @@ h1 {
   
   .dropdown:hover .dropdown-content {
     display: block;
+    
   }
-  
 
 ul {
     width: 50vw;
@@ -104,12 +109,15 @@ li {
     justify-content: space-between;
 }
 .link a {
-    padding: 1vw;
-    background-color: #d7d1e3;
+    padding: 1vh 0vw;
+    background-color:solid white;
     color: rgb(0, 0, 0);
-    margin: 5vh 1vw;
-    border-radius: 8px;
     text-align: center;
 
+
+}
+
+.link a:hover {
+  background-color: #dddbe0;
 }
 

@@ -37,8 +37,8 @@ router.post('/create', async(req, res, next) => {
     console.log('passingData', passingData);
     const { Type, Amount, Date, CategoryID, Description, UserID } = passingData
     const transactionId = await transactionModel.createTransaction(Type, Amount, Date, CategoryID, Description, UserID);
-    // Send JSON response
-    res.status(201).json({ newTransactionId: transactionId})
+    console.log('transactionId', transactionId); // Leave the console.log for now, we will figure out later how to pass the transactionId to view
+    res.redirect('/transactions')
   
   }catch (err) {
    next(err)

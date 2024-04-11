@@ -38,35 +38,11 @@ async function getSingleCategory(id) {
 
 // 
 
-async function updateCategory(id, newCategory) {
-  try {
-    let sql = `UPDATE Category SET `;
-    let oldCategory = await getSingleCategory(id);
-    oldCategory['Date'] = new Date(oldCategory['Date']).toISOString().slice(0, 10);
-
-    let keys = [];
-    let values = [];
-
-    for (let key of Object.keys(newCategory)) {
-      if (oldCategory[key] !== newCategory[key]) {
-        keys.push(`${key} = ?`);
-        values.push(newCategory[key]);
-      }
-    }
-
-    if (keys.length === 0) {
-      return;
-    }
-
-    sql += keys.join(', ');
-    sql += ` WHERE CategoryID = ?;`;
-    values.push(id);
-
-    await db.pool.query(sql, values);
-  } catch (error) {
-    console.error("Error updating category:", error);
-    throw error;
-  }
+// Update a category
+async function updateCategory(categoryID, categoryName) {
+  const query = "UPDATE Category SET CategoryName = ? WHERE CategoryID = ?";
+  const values = [categoryName, categoryID];
+  await db.query(query, values);
 }
 
 module.exports = {

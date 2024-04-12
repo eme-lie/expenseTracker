@@ -32,5 +32,9 @@ block content
                 .div.col-3 #{transaction.Date ? transaction.Date.toISOString().split('T')[0] : 'N/A'}
       - else
         p There are no transactions
+
+    //- script.
+    //-   // JavaScript code to redirect to the transactions page after creating a transaction
+    //-   window.location.href = '/transactions';      
   
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer)

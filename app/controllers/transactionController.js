@@ -29,14 +29,20 @@ router.get('/create', async (req, res, next) => {
 })
 
 router.post('/create', async(req, res, next) => {
-  //console.log(req.body)
-  let passingData = {
-    ...req.body,
-    UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
+  try{
+    let passingData = {
+      ...req.body,
+      UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
+    }
+    const { Type, Amount, Date, CategoryID, Description, UserID } = passingData
+    const transactionId = await transactionModel.createTransaction(Type, Amount, Date, CategoryID, Description, UserID);
+    console.log('transactionId', transactionId); // Leave the console.log for now, we will figure out later how to pass the transactionId to view
+    res.redirect('/transactions')
+  
+  }catch (err) {
+   next(err)
   }
-
-  console.log(passingData)
-  res.redirect('/transactions')
+ 
 })
 
 // Deleting transactions

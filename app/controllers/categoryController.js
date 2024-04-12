@@ -36,10 +36,15 @@ router.get("/:id/update", async (req, res, next) => {
 });
 
 router.post("/:id/update", async (req, res, next) => {
-  const category = await categoryModel.getSingleCategory(req.params.id);
-  console.log(req.body);
-
-  res.redirect("/categories");
+  try {
+    const category = await categoryModel.getSingleCategory(req.params.id);
+    console.log(req.body);
+    const newCategoryName = req.body.categoryName;
+    await categoryModel.updateCategory(req.params.id, newCategoryName);
+    res.redirect("/categories");
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Deleting a category

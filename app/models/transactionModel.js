@@ -82,6 +82,24 @@ async function getTransactionsbyCategory(id){
   return transaction
 }
 
+
+var expenseDescriptionInput = document.getElementById("descriptionInput");
+function isValidDescriptionInput()
+{
+  var descriptionRegEx  = /[a-zA-Z\s]+/;
+  if(descriptionRegEx.test(expenseDescriptionInput.value) == true)
+  {
+    expenseDescriptionInput.classList.add("is-valid");
+    expenseDescriptionInput.classList.remove("is-invalid");
+  }
+  else
+  {
+    expenseDescriptionInput.classList.add("is-valid");
+    expenseDescriptionInput.classList.remove("is-invalid");
+  }
+
+};
+
 module.exports = {
   getTransactions,
   calculateTotalBalance,
@@ -89,4 +107,5 @@ module.exports = {
   getTransactionsbyCategory,
   deleteTransaction,
   updateTransaction,
+  isValidDescriptionInput,
 };

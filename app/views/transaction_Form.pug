@@ -41,7 +41,7 @@ block content
 
     // Expense Description textarea
     div.form-floating.mb-3.mt-2
-      textarea#ExpenseDescription.form-control(name="Description" placeholder="Expense Description" required)
+      textarea#ExpenseDescription.form-control(name="Description" id="descriptionInput" oninput="isValidDescriptionInput();" placeholder="Expense Description" required)
         | #{ transaction ? transaction.Description : '' }
       label(for="Description") Expense Description
 

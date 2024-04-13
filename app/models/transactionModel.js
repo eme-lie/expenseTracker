@@ -30,6 +30,20 @@ const calculateTotalBalance = (transactions) => {
 
 };
 
+// Create transaction
+const createTransaction = async (type, amount, date, categoryId, description, userId) => {
+  try{
+    const result = await db.query(
+      'INSERT INTO Transaction (Type, Amount, Date, CategoryID, Description, UserID) VALUES (?, ?, ?, ?, ?, ?)', 
+      [type, amount, date, categoryId, description, userId])
+    return result.insertId
+  }catch (error){
+    console.error('Error creating transaction:', error)
+    throw error;
+  }
+
+}
+
 
 async function deleteTransaction(id) {
   let sql =`DELETE FROM Transaction WHERE TransactionID = ?`
@@ -59,7 +73,7 @@ async function updateTransaction(id, newTransaction){
     if(oldTransaction[key] != newTransaction[key]){
       //sql += `${key} = "${newTransaction[key]}", `
       keys.push(`${key} = ?`)
-      values.push(newTransaction[key])
+      values.push(newTransaction[key] !== undefined ? newTransaction[key] : null)
     }
   }
 
@@ -107,5 +121,6 @@ module.exports = {
   getTransactionsbyCategory,
   deleteTransaction,
   updateTransaction,
+  createTransaction,
   isValidDescriptionInput,
 };

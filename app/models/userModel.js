@@ -12,7 +12,7 @@ const getUsers = async () => {
   }
 };
 
-async function checkUser(email, username=''){
+async function checkUser(email){
   try {
     let sql = `SELECT * FROM User WHERE email = ?`
     let [result] = await db.pool.query(sql, [email])
@@ -40,13 +40,11 @@ async function getUser(email, username = null){
   if(username != null) {
     let sql = `SELECT * FROM User WHERE Email = ? or Username = ?`
     let [result] = await db.pool.query(sql, [email, username])
-    console.log("Username exists: ".pink, result)
     return result
   }
 
   let sql = `SELECT * FROM User WHERE Email = ?`
   let [result] = await db.pool.query(sql, [email])
-  console.log("Email exists: ".pink, result)
   return result
 
 }

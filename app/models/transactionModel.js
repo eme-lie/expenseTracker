@@ -73,7 +73,7 @@ async function updateTransaction(id, newTransaction){
     if(oldTransaction[key] != newTransaction[key]){
       //sql += `${key} = "${newTransaction[key]}", `
       keys.push(`${key} = ?`)
-      values.push(newTransaction[key] !== undefined ? newTransaction[key] : null)
+      values.push(newTransaction[key])
     }
   }
 

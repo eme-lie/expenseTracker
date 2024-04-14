@@ -29,7 +29,7 @@ CREATE TABLE Transaction (
   FOREIGN KEY (UserID) REFERENCES User (UserID)
 );
 
--- Insert sample data into Category table
+-- Insert data into Category table
 INSERT INTO Category (CategoryName) 
 VALUES
 ('Food'),
@@ -44,20 +44,22 @@ VALUES
 ('Travel'),
 ('Passive income');
 
--- Insert sample data into User table
+-- Insert data into User table
+-- Everone's password is "pass"
 INSERT INTO User (Username, Password, Email, FirstName, LastName, DateOfBirth) 
 VALUES 
-	('john123', 'password123', 'john@example.com', 'John', 'Doe', '1990-05-15'),
-	('jane456', 'pass1234', 'jane@example.com', 'Jane', 'Smith', '1995-09-22'),
-	('adam789', 'password123', 'adam@example.com', 'Adam', 'Jenkins', '1991-01-12'),
-	('zoe1011', 'pass1234', 'zoe@example.com', 'Zoe', 'de Gaul', '1995-12-22');
+	('john123', '$2a$13$uxDvHhA1.fwq3p8ZaA3mG..y6ab3vWv/mLnztRnurKmS26eQ1isOe', 'john@example.com', 'John', 'Doe', '1990-05-15'),
+	('jane456', '$2a$13$uxDvHhA1.fwq3p8ZaA3mG..y6ab3vWv/mLnztRnurKmS26eQ1isOe', 'jane@example.com', 'Jane', 'Smith', '1995-09-22'),
+	('adam789', '$2a$13$uxDvHhA1.fwq3p8ZaA3mG..y6ab3vWv/mLnztRnurKmS26eQ1isOe', 'adam@example.com', 'Adam', 'Jenkins', '1991-01-12'),
+	('zoe1011', '$2a$13$uxDvHhA1.fwq3p8ZaA3mG..y6ab3vWv/mLnztRnurKmS26eQ1isOe', 'zoe@example.com', 'Zoe', 'de Gaul', '1995-12-22');
 
+-- admin's password is "admin"
 INSERT INTO User(Username, Password, Email, FirstName, LastName, DateOfBirth) 
-VALUES('admin', 'admin', 'admin@admin.com', 'Admin', null, '2000-01-01');
+VALUES('admin', '$2a$13$MxVfgg42QIKmPne.jj3ceOTQooR6zEq.RmYP9ge.3OkKVUrqcbtJK', 'admin@admin.com', 'Admin', null, '2000-01-01');
 
 UPDATE User SET UserID = 0 WHERE Username = 'admin';
 
--- Insert sample data into Transaction table
+-- Insert data into Transaction table
 INSERT INTO Transaction (Type, Amount, Date, CategoryID, Description, UserID)
 VALUES
   ('expense', -25.50, '2024-02-20', 1, 'Lunch at a restaurant', 1),

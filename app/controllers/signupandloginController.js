@@ -65,7 +65,11 @@ router.post("/login", async function (req, res){
       
       if(isMatch){
         // user is logged in
-        res.cookie('user', result.UserID)
+        if(result.UserID == 0)
+          res.cookie('user', "admin")
+        else
+          res.cookie('user', result.UserID)
+        
         res.redirect('/home')
       }
       else {

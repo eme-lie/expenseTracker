@@ -43,6 +43,11 @@ html
                                     a(href="/auth/login")
                                         p.sub-text Log In
 
+
+                            if errors
+                                div.errors
+                                    p= errors
+
             else if current_view === "login"
                 .login-container
                     .login-container-back-button-and-title 
@@ -63,8 +68,11 @@ html
                                     p.main-text Don't have an account?
                                     a(href="/auth/signup")
                                         p.sub-text Sign Up
-                                        
-                                         
+                
+                if errors
+                    div.errors
+                        p= errors
+                                            
 
 
 

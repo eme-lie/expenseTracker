@@ -13,20 +13,36 @@ router.get("/signup", function(req, res){
 });
 
 router.post("/signup", async function(req, res){
+  // checking if the user exists
+  let check = await userModel.getUser(req.body.Email, req.body.Username)
+  if(check.length >= 1){
+    res.render("signupandlogin", { 
+      current_view: "signup", 
+      title: "Sign Up",
+      errors: `User Already Exists`
+    });
+
+    return
+  }
+
+
   let data = {
     ...req.body
   }
+
+  // hashing password
   const salt = bcrypt.genSaltSync(13)
   const hash = await bcrypt.hash(data.Password, salt)
   data.Password = hash
 
-  console.log(data)
+  
   let result = await userModel.addUser(data)
-
-  if(result == "USER EXISTS")
-    res.redirect('/auth/signup')
+  console.log(result)
+  //result = result[0].UserID
   
-  
+  let UserID = await userModel.getUser(data.Email)
+  UserID = UserID[0].UserID
+  res.cookie('user', UserID)
   res.redirect('/home')
 })
 
@@ -42,21 +58,31 @@ router.post("/login", async function (req, res){
   try{
     let result = await userModel.checkUser(req.body.email)  
   
-    //if(result && isMatch){
     if(result){
       let truePassword = result.Password
       let formPassword = req.body.password
       const isMatch = await bcrypt.compare(formPassword, truePassword)
       
       if(isMatch){
+        // user is logged in
         res.cookie('user', result.UserID)
         res.redirect('/home')
       }
       else {
-        res.redirect('/auth/login')
+        // wrong passwod
+        res.render("signupandlogin", { 
+          current_view: "login",
+          title: "Log In",
+          errors: `Wrong Password`
+        });
       }
     } else {
-      res.redirect('/auth/login')
+      // no user
+      res.render("signupandlogin", { 
+        current_view: "login",
+        title: "Log In",
+        errors: `No Such User: ${req.body.email}`
+      });
     }
   } catch(err){
     console.error(err)

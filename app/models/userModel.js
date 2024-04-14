@@ -1,5 +1,6 @@
 const { query } = require('express');
 const db = require('../services/db');
+const colors = require('colors')
 
 const getUsers = async () => {
   try {
@@ -35,29 +36,35 @@ async function getName(id){
   }
 }
 
-async function addUser(data){
-  try{
-    let check = await checkUser(data.Email, data.Username)
-    if(check != undefined)
-      return "USER EXISTS"
-      
-    let sql = `INSERT INTO User(FirstName, LastName, DateOfBirth, Username, Email, Password) VALUES(?)`
-    let user = []
-
-    for([keys, values] of Object.entries(data))
-      user.push(values)
-    
-    await db.pool.query(sql, [user])
-  } catch(err){
-    console.error(err)
-    throw err
+async function getUser(email, username = null){
+  if(username != null) {
+    let sql = `SELECT * FROM User WHERE Email = ? or Username = ?`
+    let [result] = await db.pool.query(sql, [email, username])
+    console.log("Username exists: ".pink, result)
+    return result
   }
 
+  let sql = `SELECT * FROM User WHERE Email = ?`
+  let [result] = await db.pool.query(sql, [email])
+  console.log("Email exists: ".pink, result)
+  return result
+
+}
+
+async function addUser(data){
+  let sql = `INSERT INTO User(FirstName, LastName, DateOfBirth, Username, Email, Password) VALUES(?)`
+  let user = []
+
+  for([keys, values] of Object.entries(data))
+    user.push(values)
+  
+  await db.pool.query(sql, [user])
 }
 
 module.exports = {
   getUsers,
   checkUser,
   getName,
-  addUser
+  getUser,
+  addUser,
 };

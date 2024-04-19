@@ -1,6 +1,5 @@
 const { query } = require('express');
 const db = require('../services/db');
-const colors = require('colors')
 
 const getUsers = async () => {
   try {
@@ -11,18 +10,6 @@ const getUsers = async () => {
     throw error;
   }
 };
-
-async function checkUser(email){
-  try {
-    let sql = `SELECT * FROM User WHERE email = ?`
-    let [result] = await db.pool.query(sql, [email])
-    result = result[0]
-    return result
-  } catch(err){
-    console.error(err);
-    throw err
-  }
-}
 
 async function getName(id){
   try {
@@ -61,7 +48,6 @@ async function addUser(data){
 
 module.exports = {
   getUsers,
-  checkUser,
   getName,
   getUser,
   addUser,

@@ -56,7 +56,8 @@ router.get("/login", function(req, res){
 
 router.post("/login", async function (req, res){
   try{
-    let result = await userModel.checkUser(req.body.email)  
+    let result = await userModel.getUser(req.body.email)  
+    result = result[0]
   
     if(result){
       let truePassword = result.Password
@@ -77,7 +78,8 @@ router.post("/login", async function (req, res){
         res.render("signupandlogin", { 
           current_view: "login",
           title: "Log In",
-          errors: `Wrong Password`
+          errors: `Wrong Password`,
+          email: req.body.email,
         });
       }
     } else {

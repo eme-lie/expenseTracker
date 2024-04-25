@@ -1,4 +1,7 @@
 const db = require('../services/db');
+const { pool } = require('../services/db')
+
+
 
 const getTransactions = async (UserID='admin') => {
   try {
@@ -96,6 +99,25 @@ async function getTransactionsbyCategory(id){
   return transaction
 }
 
+async function superTable(user=null){
+
+  let sql = "SELECT T.TransactionID, T.Type, T.Amount, T.Date, T.Description, C.CategoryName, U.Email FROM Transaction T, Category C, User U WHERE T.CategoryID = C.CategoryID AND T.UserID = U.UserID"
+
+  if(user !== "admin"){
+    //sql += `AND T.UserID = ? `
+    sql = "SELECT T.TransactionID, T.Type, T.Amount, T.Date, T.Description, C.CategoryName, U.Email FROM Transaction T, Category C, User U WHERE T.CategoryID = C.CategoryID AND T.UserID = U.UserID AND T.UserID = ?"
+
+    let [results] = await pool.query(sql, [Number(user)])
+    //console.log(results)
+    return results
+  } 
+  
+  let [results] = await pool.query(sql)
+  //console.log(results)
+  return results
+
+}
+
 module.exports = {
   getTransactions,
   calculateTotalBalance,
@@ -103,5 +125,6 @@ module.exports = {
   getTransactionsbyCategory,
   deleteTransaction,
   updateTransaction,
-  createTransaction
+  createTransaction,
+  superTable,
 };

@@ -31,7 +31,7 @@ h1 {
 }
 
 .purple > div {
-	width: 25vw;
+	width: 23vw;
 	padding: 1.5vh 0;
 	
 	background-color: var(--Neutral300-border-color);
@@ -40,6 +40,9 @@ h1 {
 	font-size: var(--T2-medium-title-font-size);
 }
 
+.purple-quad > div {
+	width: 30vw;
+}
 /*************************/
 
 #sorting {
@@ -130,7 +133,7 @@ h4 {
 /*************************/
 
 ul {
-	width: 50vw;
+	width: 46vw;
 
 	display: flex;
 	flex-direction: column;
@@ -148,14 +151,25 @@ ul {
 
 }
 
+.quad {
+	width: 60vw;
+}
+
 li {
 	list-style: none;
 	padding: 0 2vw;
 	padding-bottom: 4vh;
 
-	display: flex;
+	display: grid;
+	grid-template-columns: 12vw 20vw 10vw 10vw;
 	justify-content: space-between;
 	align-items: center;
+	align-content: center;
+}
+
+li > div {
+	width: 15vw;
+	width: fit-content;
 }
 
 /***/
@@ -164,13 +178,7 @@ li {
 	display: flex;
 	gap: 0.5vw;
 	align-items: center;
-}
-
-.void {
-	width: 3vw;
-	height: 3vw;
-	background-color: lightgray;
-	border-radius: 8px;
+	width: fit-content;
 }
 
 .description {
@@ -183,10 +191,18 @@ li {
 
 /***/
 
+.categoryName {
+	margin: 0;
+	padding: 0;
+	justify-self: center;
+
+}
+
 .rightie {
 	display: flex;
-	gap: 1vw;
 	align-items: center;
+	justify-self: flex-end;
+	gap: 1vw;
 }
 
 .amount {

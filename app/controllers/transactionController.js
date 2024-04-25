@@ -8,7 +8,11 @@ const categoryModel = require('../models/categoryModel')
 // Reading transactions
 router.get('/', async (req, res, next) => {
   try {
-    const transactions = await transactionModel.getTransactions(req.cookies.user);
+    //const transactions = await transactionModel.getTransactions(req.cookies.user);
+
+    
+    const transactions = await transactionModel.superTable(req.cookies.user)
+
     res.render('transactions', { title: 'Transaction List', transactions });
 
   } catch (err) {
@@ -36,7 +40,7 @@ router.post('/create', async(req, res, next) => {
     }
     const { Type, Amount, Date, CategoryID, Description, UserID } = passingData
     const transactionId = await transactionModel.createTransaction(Type, Amount, Date, CategoryID, Description, UserID);
-    console.log('transactionId', transactionId); // Leave the console.log for now, we will figure out later how to pass the transactionId to view
+    //console.log('transactionId', transactionId); // Leave the console.log for now, we will figure out later how to pass the transactionId to view
     res.redirect('/transactions')
   
   }catch (err) {

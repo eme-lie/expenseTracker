@@ -1,6 +1,36 @@
 const db = require('../services/db');
 const { pool } = require('../services/db')
 
+class transaction {
+  constructor(TransactionID, Type, Amount, Date, CategoryID, Description, UserID){
+    this.TransactionID = TransactionID
+    this.Type = Type
+    this.Amount = Amount
+    this.Date = Date
+    this.CategoryID = CategoryID
+    this.Description = Description
+    this.UserID = UserID
+  }
+
+  static async superTable(user=null){
+    let sql = "SELECT T.TransactionID, T.Type, T.Amount, T.Date, T.Description, C.CategoryName, U.Email FROM Transaction T, Category C, User U WHERE T.CategoryID = C.CategoryID AND T.UserID = U.UserID"
+  
+    if(user !== "admin"){
+      //sql += `AND T.UserID = ? `
+      sql = "SELECT T.TransactionID, T.Type, T.Amount, T.Date, T.Description, C.CategoryName, U.Email FROM Transaction T, Category C, User U WHERE T.CategoryID = C.CategoryID AND T.UserID = U.UserID AND T.UserID = ?"
+  
+      let [results] = await pool.query(sql, [Number(user)])
+      //console.log(results)
+      return results
+    } 
+    
+    let [results] = await pool.query(sql)
+    //console.log(results)
+    return results
+  
+  }
+  
+}
 
 
 const getTransactions = async (UserID='admin') => {
@@ -99,24 +129,7 @@ async function getTransactionsbyCategory(id){
   return transaction
 }
 
-async function superTable(user=null){
 
-  let sql = "SELECT T.TransactionID, T.Type, T.Amount, T.Date, T.Description, C.CategoryName, U.Email FROM Transaction T, Category C, User U WHERE T.CategoryID = C.CategoryID AND T.UserID = U.UserID"
-
-  if(user !== "admin"){
-    //sql += `AND T.UserID = ? `
-    sql = "SELECT T.TransactionID, T.Type, T.Amount, T.Date, T.Description, C.CategoryName, U.Email FROM Transaction T, Category C, User U WHERE T.CategoryID = C.CategoryID AND T.UserID = U.UserID AND T.UserID = ?"
-
-    let [results] = await pool.query(sql, [Number(user)])
-    //console.log(results)
-    return results
-  } 
-  
-  let [results] = await pool.query(sql)
-  //console.log(results)
-  return results
-
-}
 
 module.exports = {
   getTransactions,
@@ -126,5 +139,5 @@ module.exports = {
   deleteTransaction,
   updateTransaction,
   createTransaction,
-  superTable,
+  transaction
 };

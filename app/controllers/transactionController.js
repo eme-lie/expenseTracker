@@ -3,6 +3,8 @@ const router = express.Router();
 const transactionModel = require('../models/transactionModel');
 const categoryModel = require('../models/categoryModel')
 
+const { transaction } = require("../models/transactionModel")
+
 
 
 // Reading transactions
@@ -11,7 +13,8 @@ router.get('/', async (req, res, next) => {
     //const transactions = await transactionModel.getTransactions(req.cookies.user);
 
     
-    const transactions = await transactionModel.superTable(req.cookies.user)
+    //const transactions = await transactionModel.superTable(req.cookies.user)
+    const transactions = await transaction.superTable(req.cookies.user)
 
     res.render('transactions', { title: 'Transaction List', transactions });
 

@@ -35,7 +35,6 @@ app.use(async (req, res, next) => {
     res.locals.user = await userModel.getName(req.cookies.user)
   }
     
-
   next();
 });
 
@@ -50,7 +49,6 @@ app.get("/landing_page", (req, res) => {
 
 app.get('/', (req, res) => {
   res.redirect('/landing_page')
-  console.log(req.cookies)
 });
 
 app.get('/home', async (req, res, next)=> {

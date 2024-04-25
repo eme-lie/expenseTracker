@@ -12,19 +12,19 @@ block content
     div.purple(class=user=="admin"?"purple-quad":"")
         div#sorting 
           p Sort
-          div#sortingDD
+          div#sortingDD(class=user=="admin"?"dd-quad":"")
             div.quantity
               h4 Amount
-              p#quantAsc Asc
-              p#quantDesc Desc
+              p#quantAsc Ascending
+              p#quantDesc Descending
 
             div.date
               h4 Date
-              p#dateAsc Asc
-              p#dateDesc Desc
+              p#dateAsc Ascending
+              p#dateDesc Descending
 
         div#filtering Filter
-          div#filteringDD
+          div#filteringDD(class=user=="admin"?"dd-quad":"")
             div
               h4 Date
               p#day Last Day
@@ -55,7 +55,7 @@ block content
           div.rightie
             p.amount #{transaction.Amount}
             p.dots ⋯
-            div.options.invisible
+            div.options.invisible(class=user=="admin"?"options-quad":"")
               - let urlUpdate = `/transactions/${transaction.TransactionID}/update`
               a(href=urlUpdate)#update Update
               a(href="#" data-id=transaction.TransactionID)#delete Delete

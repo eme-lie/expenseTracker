@@ -28,17 +28,21 @@ function dialog(){
 	for(let i=0; i<del.length; i++){
 		del[i].addEventListener('click', function(){
 			const storage = document.querySelector('.storage')
-			const info = del[i].parentNode.parentNode.previousSibling.lastChild
-			const secret = document.querySelector('#secret')
-
+			
+			let info = del[i].parentNode.parentNode.parentNode//previousSibling.lastChild
+			info = info.querySelector(".leftie")
+			//console.log(info)
+			
 			storage.innerHTML = ''
 			storage.append(info.cloneNode(true))
 
-			//console.log(info.firstChild)
+			//console.log(info.querySelector('.invisible'))
+			const delete_id = info.querySelector('.invisible').innerHTML
+
+			const secret = document.querySelector('#secret')
+			secret.setAttribute('value', delete_id)
 			
-			secret.setAttribute('value', info.firstChild.innerHTML)
-			
-			console.log(secret)
+			//console.log(secret)
 
 			dialog.showModal()
 			

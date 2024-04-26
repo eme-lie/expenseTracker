@@ -5,8 +5,6 @@ const categoryModel = require('../models/categoryModel')
 
 const { transaction } = require("../models/transactionModel")
 
-
-
 // Reading transactions
 router.get('/', async (req, res, next) => {
   try {
@@ -16,7 +14,10 @@ router.get('/', async (req, res, next) => {
     //const transactions = await transactionModel.superTable(req.cookies.user)
     const transactions = await transaction.superTable(req.cookies.user)
 
-    res.render('transactions', { title: 'Transaction List', transactions });
+    res.render('transactions', { 
+      title: 'Transaction List', 
+      transactions 
+    });
 
   } catch (err) {
     next(err);
@@ -37,12 +38,17 @@ router.get('/create', async (req, res, next) => {
 
 router.post('/create', async(req, res, next) => {
   try{
+    /*
     let passingData = {
       ...req.body,
       UserID: req.cookies.user == 'admin' ? 0 : req.cookies.user,
     }
+    */
 
-    let { Type, Amount, Date, CategoryID, Description, UserID } = passingData
+
+    //let { Type, Amount, Date, CategoryID, Description, UserID } = passingData
+    let { Type, Amount, Date, CategoryID, Description } = req.body
+    const UserID = req.cookies.user == 'admin' ? 0 : req.cookies.user
 
     if((Type == 'expense') && (Number(Amount) > 0))
       Amount = "-" + Amount
@@ -50,7 +56,8 @@ router.post('/create', async(req, res, next) => {
     if((Type == 'income') && (Number(Amount) < 0))
       Amount = Number(Amount) * -1
 
-    await transactionModel.createTransaction(Type, Amount, Date, CategoryID, Description, UserID);
+    //await transactionModel.createTransaction(Type, Amount, Date, CategoryID, Description, UserID);
+    transaction.createTransaction(Type, Amount, Date, CategoryID, Description, UserID)
     
     res.redirect('/transactions')
   
@@ -64,13 +71,15 @@ router.post('/create', async(req, res, next) => {
 router.post('/', async(req, res, next) => {
   const delete_id = req.body['transaction_id']
   
-  transactionModel.deleteTransaction(delete_id)
+  //transactionModel.deleteTransaction(delete_id)
+  transaction.deleteTransaction(delete_id)
   res.redirect('/transactions')
  })
 
 // Updating transactions
 router.get('/:id/update', async(req, res, next) => {
-  const transaction_ = await transactionModel.getSingleTransaction(req.params.id)
+  //const transaction_ = await transactionModel.getSingleTransaction(req.params.id)
+  const transaction_ = await transaction.getSingleTransaction(req.params.id)
   
   const categories = await categoryModel.getCategories()
   res.render('transaction_Form', {
@@ -93,11 +102,10 @@ router.post('/:id/update', async(req, res, next) => {
   if((newTransaction['Type'] == 'income') && (Number(newTransaction['Amount']) < 0))
     newTransaction['Amount'] = Number(newTransaction['Amount']) * -1
 
-  await transactionModel.updateTransaction(req.params.id, newTransaction)
+  //await transactionModel.updateTransaction(req.params.id, newTransaction)
+  await transaction.updateTransaction(req.params.id, newTransaction)
 
   res.redirect('/transactions');
 })
-
-
 
 module.exports = router;

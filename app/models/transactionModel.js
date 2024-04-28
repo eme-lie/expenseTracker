@@ -2,7 +2,7 @@ const db = require('../services/db');
 const { pool } = require('../services/db')
 
 class transaction {
-  constructor(TransactionID, Type, Amount, Date, CategoryID, Description, UserID){
+  constructor(TransactionID=null, Type=null, Amount=null, Date=null, CategoryID=null, Description=null, UserID=null){
     this.TransactionID = TransactionID
     this.Type = Type
     this.Amount = Amount

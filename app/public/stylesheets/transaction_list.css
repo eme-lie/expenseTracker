@@ -203,7 +203,23 @@ li > div {
 	margin: 0;
 	padding: 0;
 	justify-self: center;
+}
 
+.categoryName > p {
+	text-align: center;
+	max-width: 10vw;
+}
+
+.user > p {
+	text-align: center;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-width: 12vw;
+}
+
+.user > p:hover {
+	overflow: visible;
+	word-wrap: break-word;
 }
 
 .rightie {

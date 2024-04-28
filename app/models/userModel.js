@@ -1,5 +1,50 @@
 const { query } = require('express');
 const db = require('../services/db');
+const { pool } = require("../services/db")
+//const colors = require("colors")
+
+class user{
+  constructor(Username=null, Password=null, Email=null, FirstName=null, LastName=null, DateOfBirth=null){
+    this.Username = Username
+    this.Password = Password 
+    this.Email = Email
+    this.FirstName = FirstName
+    this.LastName = LastName
+    this.DateOfBirth = DateOfBirth
+  }
+
+  async initByID(ID){
+    let sql = `SELECT * FROM User WHERE UserID = ?`
+    let [user] = await pool.query(sql, [ID])
+    user = user[0]
+
+    for(let [key, value] of Object.entries(user)){
+      this[key] = value
+    }
+  }
+
+  async initByEmail(email){
+    let sql = `SELECT * FROM User WHERE Email = ?`
+    let [user] = await pool.query(sql, [email])
+    user = user[0]
+
+    for(let [key, value] of Object.entries(user)){
+      this[key] = value
+    }
+
+  }
+
+  print(){
+    console.log(this.Username)
+    console.log(this.Email)
+    console.log(this.FirstName, this.LastName)
+
+    //console.log(`%c${this.Username}`, 'color: red')
+    //console.log(`%c${this.Email}`, 'color: red')
+    //console.log(`%c${this.FirstName, this.LastName}`, 'color: red')
+  }
+
+}
 
 const getUsers = async () => {
   try {
@@ -51,4 +96,5 @@ module.exports = {
   getName,
   getUser,
   addUser,
+  user
 };

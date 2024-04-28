@@ -4,6 +4,9 @@ const userModel = require("../models/userModel")
 const bcrypt = require("bcryptjs")
 const router = express.Router();
 
+
+const { user } = require("../models/userModel")
+
 // Sign Up
 router.get("/signup", function(req, res){
   res.render("signupandlogin", { 

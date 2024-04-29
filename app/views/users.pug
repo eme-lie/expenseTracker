@@ -19,6 +19,15 @@ block content
           th DateOfBirth
           
       tbody
+        each user in users
+          tr
+            td #{user.UserID}
+            td #{user.Username}
+            td #{user.Email}
+            td #{user.FirstName}
+            td #{user.LastName}
+            td #{user.DateOfBirth ? user.DateOfBirth.toISOString().split('T')[0] : 'N/A'}
+
         
   else
     p There are no users

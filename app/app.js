@@ -48,7 +48,14 @@ app.get("/landing_page", (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.redirect('/landing_page')
+  //req.cookies.user ? res.redirect("/home") : res.redirect("/landing_page")
+  const user =  req.cookies.user 
+
+  if(user && user != "admin")
+    res.redirect("/home")
+  else
+    res.redirect("/landing_page")
+    
 });
 
 app.get('/home', async (req, res, next)=> {
@@ -76,5 +83,5 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-  console.log(`http://localhost:${port}`);
+  console.log(`http://localhost:${port}/`);
 });

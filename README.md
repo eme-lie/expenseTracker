@@ -32,3 +32,4 @@ Expense Tracker allows users to perform CRUD operations. Users can add, edit, ca
 6. Paste and execute sql
 7. Run docker-compose up on your terminal
 8. Enter http://localhost:3000/ into your browser or click on the link provided by docker
+9. Navigate to signup page and signup

@@ -29,3 +29,4 @@ Expense Tracker allows users to perform CRUD operations. Users can add, edit, ca
 3. Install docker
 4. Create env file
 5. Go to php my admin on 8081
+6. Paste and execute sql

@@ -25,4 +25,4 @@ Expense Tracker allows users to perform CRUD operations. Users can add, edit, ca
 # How to Install
 
 1. Git clone
-2. Npm Install
+2. npm Install

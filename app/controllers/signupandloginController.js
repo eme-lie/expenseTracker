@@ -1,8 +1,10 @@
 const express = require("express");
-const signupandloginModel = require("../models/signupandloginModel");
-const userModel = require("../models/userModel")
 const bcrypt = require("bcryptjs")
 const router = express.Router();
+
+const signupandloginModel = require("../models/signupandloginModel");
+const userModel = require("../models/userModel")
+const { user } = require("../models/userModel")
 
 // Sign Up
 router.get("/signup", function(req, res){
@@ -37,11 +39,11 @@ router.post("/signup", async function(req, res){
 
   
   let result = await userModel.addUser(data)
-  console.log(result)
+  //console.log(result)
   //result = result[0].UserID
   
-  let UserID = await userModel.getUser(data.Email)
-  UserID = UserID[0].UserID
+  //let UserID = await userModel.getUser(data.Email)
+  const UserID = result[0].insertId
   res.cookie('user', UserID)
   res.redirect('/home')
 })

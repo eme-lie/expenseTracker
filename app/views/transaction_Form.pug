@@ -14,7 +14,7 @@ block content
 
   form(method='POST').w-75.mx-auto.py-2
 
-    //- Transaction Type  //added by daulet
+    //- Transaction Type
     div.form-floating.mb-3
       select#TransactionType.form-select(aria-label='Floating label select example' name='Type' required)
         option(value='expense' selected=(transaction && transaction.Type === 'expense')) Expense
@@ -47,6 +47,3 @@ block content
 
     // Edit Transaction button
     button.btn.my-2.text-light(type="submit") Submit
-
-    
-  

@@ -9,39 +9,44 @@ block content
   h1= title
 
   if transactions
-    div.purple
+    div.purple(class=user=="admin"?"purple-quad":"")
         div#sorting 
           p Sort
-          div#sortingDD
+          div#sortingDD(class=user=="admin"?"dd-quad":"")
             div.quantity
               h4 Amount
-              p#quantAsc Asc
-              p#quantDesc Desc
+              p#quantAsc Ascending
+              p#quantDesc Descending
 
             div.date
               h4 Date
-              p#dateAsc Asc
-              p#dateDesc Desc
+              p#dateAsc Ascending
+              p#dateDesc Descending
 
         div#filtering Filter
-          div#filteringDD
+          div#filteringDD(class=user=="admin"?"dd-quad":"")
             div
               h4 Date
               p#day Last Day
               p#week Last Week
               p#month Last Month
 
-    ul#main
+    ul#main(class=user=="admin"?"quad":"")
       each transaction in transactions
         li
           div.leftie
-            div.void
             div
               p.invisible #{transaction.TransactionID}
               p.description #{transaction.Description}
               p.date #{transaction.Date?transaction.Date.toISOString().split('T')[0]:''}
 
-            
+
+          div.categoryName
+            p #{transaction.CategoryName} 
+
+          if(user=="admin")
+            div.user
+              p #{transaction.Email}
           //-p
             | TransactionID: #{transaction.TransactionID}, Type: #{transaction.Type}, Amount: #{transaction.Amount},
             | Date: #{transaction.Date ? transaction.Date.toISOString().split('T')[0] : 'N/A'}
@@ -50,7 +55,7 @@ block content
           div.rightie
             p.amount #{transaction.Amount}
             p.dots ⋯
-            div.options.invisible
+            div.options.invisible(class=user=="admin"?"options-quad":"")
               - let urlUpdate = `/transactions/${transaction.TransactionID}/update`
               a(href=urlUpdate)#update Update
               a(href="#" data-id=transaction.TransactionID)#delete Delete
@@ -71,6 +76,6 @@ block content
           button(type="close" id='close') No
 
   else
-    p There are no users
+    p There are no transactions
 
   

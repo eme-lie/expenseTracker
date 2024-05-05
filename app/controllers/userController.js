@@ -1,5 +1,6 @@
 const express = require('express');
 const userModel = require('../models/userModel');
+const { user } = require("../models/userModel")
 
 const router = express.Router();
 
@@ -8,7 +9,7 @@ router.get('/', async (req, res, next) => {
     if(req.cookies.user != "admin")
       res.redirect('/home')
 
-    const users = await userModel.getUsers();
+    const users = await user.getUsers()
     res.render('users', { title: 'User List', users });
   } catch (err) {
     next(err);

@@ -1,3 +1,9 @@
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 body, h1 {
     margin: 0;
@@ -8,9 +14,9 @@ body, h1 {
     font-family: 'inter', sans-serif;
     text-align: center;
     margin-top: 20vh;
-
+    margin: 0 auto;
+    
     width: 50vw;
-    display: flex;
 	  flex-direction: column;
 	
 	  border-bottom-left-radius: 1rem;
@@ -23,7 +29,7 @@ body, h1 {
 	  -moz-box-shadow: 	3px 29px 63px 4px rgba(0,0,0,0.1);
 	  box-shadow: 		3px 29px 63px 4px rgba(0,0,0,0.1);
 
-	  margin-bottom: 20vh;
+	  margin-top: 20vh;
     
   }
   
